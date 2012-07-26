@@ -1,14 +1,15 @@
-class Bullet
+class Bullet extends Entity
 	constructor: (game)->
 		@game = game
-		@x = @game.player.x + (@game.player.width / 2)
+		@x = @game.player.x + (@game.player.width / 2) - 3
 		@y = @game.player.y
 		@width = 2
 		@height = 4
 		@colour = '#ff0'
 		@xAcceleration = 0
 		@yAcceleration = -8
-		@destroyed = false
+		@sprite = new Image()
+		@sprite.src = $('#bullet').attr('src')
 
 	update: ()->
 		if @y + @yAcceleration > 0 and @y + @yAcceleration + @height < @game.canvas.height
@@ -19,6 +20,3 @@ class Bullet
 			@x = @x + @xAcceleration
 		else
 			@destroyed = true
-
-	draw: ()->
-		@game.drawRectangle(@colour, @x, @y, @width, @height)

@@ -1,0 +1,21 @@
+canvas {
+  display: block;
+  margin: 0 auto;
+  width: 400px; }
+
+.message {
+  display: block;
+  position: absolute; }
+
+#status {
+  left: 20px;
+  top: 564px; }
+
+#gameover {
+  display: none;
+  left: 166px;
+  top: 300px; }
+
+#preload_holder {
+  left: 120px;
+  top: 300px; }

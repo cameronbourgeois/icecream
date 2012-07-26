@@ -1,6 +1,6 @@
 class Game
 	constructor: ()->
-		@fps = 60
+		@fps = 70
 		@canvas = document.getElementById('battlefield')
 		@context = @canvas.getContext('2d')
 		@context_width = @canvas.width
@@ -10,24 +10,24 @@ class Game
 		@bullets = []
 		@enemies = [new Enemy(@)]
 		@explosions = []
+		
+		@bg = new Image()
+		@bg.src = $('#bg-sky').attr('src')
 
 		window.setInterval ()=>
 			@updateAll()
 			@drawAll()
 		, 1000 / @fps
 		
-		###
-		$(window).on 'keydown', (e)=>
-			if e.which is 13 # enter
-				window.clearInterval()
-				window.game = new Game()
-		###
+		#window.setInterval ()=>
+		#	@enemies.push new Enemy(@)
+		#, 1200
 
 	updateAll: ()->
 		@player.update() if @player
 		for enemy, i in @enemies
 			enemy.update()
-			#Check for collisions and create explosion
+			#Check for collisions and create explosions
 			for bullet in @bullets
 				if ( bullet.x > enemy.x and bullet.x < enemy.x + enemy.width ) and ( bullet.y < enemy.y + enemy.height and bullet.y > enemy.y )
 					@level++
@@ -46,7 +46,7 @@ class Game
 	drawAll: ()->
 		$('#status').html(@level)
 		# draw the background
-		@drawRectangle('#9AACAA', 0, 0, @context_width, @context_height)
+		@drawBG()
 		@player.draw() if @player
 		enemy.draw() for enemy in @enemies
 		bullet.draw() for bullet in @bullets
@@ -63,8 +63,12 @@ class Game
 		@context.closePath();
 		@context.fill();
 		
+	drawBG: ()->
+		@context.drawImage(@bg,0,0)
+		
 	over: ()->
 		@explosions.push(new Explosion(@,@player.x,@player.y,80))
 		delete @player
+		alert @level
 		$('#gameover').show()
 	

@@ -5,7 +5,7 @@ Game = (function() {
 
   function Game() {
     var _this = this;
-    this.fps = 60;
+    this.fps = 70;
     this.canvas = document.getElementById('battlefield');
     this.context = this.canvas.getContext('2d');
     this.context_width = this.canvas.width;
@@ -15,17 +15,12 @@ Game = (function() {
     this.bullets = [];
     this.enemies = [new Enemy(this)];
     this.explosions = [];
+    this.bg = new Image();
+    this.bg.src = $('#bg-sky').attr('src');
     window.setInterval(function() {
       _this.updateAll();
       return _this.drawAll();
     }, 1000 / this.fps);
-    /*
-    		$(window).on 'keydown', (e)=>
-    			if e.which is 13 # enter
-    				window.clearInterval()
-    				window.game = new Game()
-    */
-
   }
 
   Game.prototype.updateAll = function() {
@@ -77,7 +72,7 @@ Game = (function() {
   Game.prototype.drawAll = function() {
     var bullet, enemy, explosion, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
     $('#status').html(this.level);
-    this.drawRectangle('#9AACAA', 0, 0, this.context_width, this.context_height);
+    this.drawBG();
     if (this.player) {
       this.player.draw();
     }
@@ -113,9 +108,14 @@ Game = (function() {
     return this.context.fill();
   };
 
+  Game.prototype.drawBG = function() {
+    return this.context.drawImage(this.bg, 0, 0);
+  };
+
   Game.prototype.over = function() {
     this.explosions.push(new Explosion(this, this.player.x, this.player.y, 80));
     delete this.player;
+    alert(this.level);
     return $('#gameover').show();
   };
 
