@@ -4,42 +4,37 @@
 <head>
 </head>
 
-<style>
-	.message {
-		display: block;
-		position: absolute;
-	}
-	#status {
-		left: 20px;
-		top: 664px;
-	}
-	#gameover {
-		display: none;
-		left: 166px;
-		top: 300px;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css" />
 
 <body>
 	
-<canvas id="battlefield" width="400" height="700">Get a better browser.</canvas>
-
-<h3 id="gameover" class="message">Game Over</h3>
-
-<p id="status" class="message">0</p>
-
-<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
-<script type="text/javascript" src="/assets/javascripts/game/enemy.js"></script>
-<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
-<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
-<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
-<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>
-
-<script type="text/javascript"> 
-	$(function(){
-		window.game = new Game();
-	});
-</script>
+	<canvas id="battlefield" width="400" height="600">Get a better browser.</canvas>
+	
+	<h3 id="preloading" class="message">Preloading Assets...</h3>
+	
+	<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/entity.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/drop.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/enemy.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>
+	
+	<div class="preload_holder" style="display:none;">
+		<!-- Temporary preload area -->
+		<img id="baddie-banana-pop" src="/assets/images/game/baddie-banana-pop.png" />
+		<img id="bg-sky" src="/assets/images/game/bg-sky.jpg" />
+		<img id="player" src="/assets/images/game/player.png" />
+		<img id="bullet" src="/assets/images/game/bullet-red.png" />
+	</div>
+	
+	<script type="text/javascript"> 
+		$(function(){
+			$('#preloading').hide();
+			window.game = new Game();
+		});
+	</script>
 
 </body>
 
