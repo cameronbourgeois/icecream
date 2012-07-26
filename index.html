@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html>
+	
+<head>
+</head>
+
+<style>
+	.message {
+		display: block;
+		position: absolute;
+	}
+	#status {
+		left: 20px;
+		top: 664px;
+	}
+	#gameover {
+		display: none;
+		left: 166px;
+		top: 300px;
+	}
+</style>
+
+<body>
+	
+<canvas id="battlefield" width="400" height="700">Get a better browser.</canvas>
+
+<h3 id="gameover" class="message">Game Over</h3>
+
+<p id="status" class="message">0</p>
+
+<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
+<script type="text/javascript" src="/assets/javascripts/game/enemy.js"></script>
+<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
+<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
+<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
+<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>
+
+<script type="text/javascript"> 
+	$(function(){
+		window.game = new Game();
+	});
+</script>
+
+</body>
+
+</html>
