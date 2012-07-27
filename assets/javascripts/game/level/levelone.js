@@ -9,7 +9,7 @@ LevelOne = (function(_super) {
 
   function LevelOne(game) {
     LevelOne.__super__.constructor.call(this, 'levelone', game);
-    this.dropLikelyhood = 0.99;
+    this.dropLikelyhood = 0.998;
     this.addBaddie();
   }
 

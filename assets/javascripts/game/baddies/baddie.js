@@ -14,7 +14,7 @@ Baddie = (function(_super) {
     this.x = Math.floor(Math.random() * (this.level.context_width - this.width) + 1);
     this.y = 0;
     this.xAcceleration = 0;
-    this.yAcceleration = 10;
+    this.yAcceleration = 6;
   }
 
   Baddie.prototype.update = function() {

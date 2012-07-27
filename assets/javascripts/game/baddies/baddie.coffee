@@ -7,7 +7,7 @@ class Baddie extends Sprite
 		@x = Math.floor( Math.random() * ( @level.context_width - @width ) + 1 ) # Randomise entry
 		@y = 0
 		@xAcceleration = 0
-		@yAcceleration = 10
+		@yAcceleration = 6
 
 	update: ()->
 		# Make sure you're still within the bounds of the canvas

@@ -1,7 +1,7 @@
 class LevelOne extends Level
 	constructor: (game)->
 		super('levelone',game)
-		@dropLikelyhood = 0.99
+		@dropLikelyhood = 0.998
 		@addBaddie()
 		
 	addBaddie: ()->
