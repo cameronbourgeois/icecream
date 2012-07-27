@@ -15,8 +15,7 @@ Level = (function() {
     this.bullets = [];
     this.enemies = [new Enemy(this)];
     this.explosions = [];
-    this.bg = new Image();
-    this.bg.src = $(window.assets.getAsset('/assets/images/game/bg-sky.jpg')).attr('src');
+    this.bg = this.game.bg;
     this.loop = window.setInterval(function() {
       _this.updateAll();
       return _this.drawAll();

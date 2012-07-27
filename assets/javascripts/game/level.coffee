@@ -14,8 +14,7 @@ class Level
 		@enemies = [new Enemy(@)]
 		@explosions = []
 		
-		@bg = new Image()
-		@bg.src = $(window.assets.getAsset('/assets/images/game/bg-sky.jpg')).attr('src')
+		@bg = @game.bg
 		
 		@loop = window.setInterval ()=>
 			@updateAll()

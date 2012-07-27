@@ -1,3 +1,8 @@
+/**
+Asset Manager
+Customised by Cameron using code from https://github.com/sethladd/Bad-Aliens
+**/
+
 function AssetManager() {
 	this.successCount = 0;
 	this.errorCount = 0;
