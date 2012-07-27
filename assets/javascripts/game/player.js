@@ -9,11 +9,9 @@ Player = (function(_super) {
 
   function Player(level) {
     var _this = this;
-    this.level = level;
-    this.sprite = new Image();
-    this.sprite.src = $(window.assets.getAsset('/assets/images/game/player.png')).attr('src');
-    this.width = this.sprite.width;
-    this.height = this.sprite.height;
+    Player.__super__.constructor.call(this, 'player', level);
+    this.lives = 6;
+    this.updateLives();
     this.x = this.level.context_width / 2;
     this.y = this.level.context_height - 100;
     this.colour = '#6f46ff';
@@ -21,7 +19,6 @@ Player = (function(_super) {
     this.leftPressed = false;
     this.rightPressed = false;
     this.moving = true;
-    this.lives = 3;
     $(window).on('keydown', function(e) {
       if (e.which === 39) {
         return _this.rightPressed = true;
@@ -55,6 +52,32 @@ Player = (function(_super) {
     }
   };
 
+  Player.prototype.addLife = function(num) {
+    if (num == null) {
+      num = 1;
+    }
+    this.lives = this.lives + num;
+    if (this.lives > 6) {
+      this.lives = 6;
+    }
+    return this.updateLives();
+  };
+
+  Player.prototype.removeLife = function(num) {
+    if (num == null) {
+      num = 1;
+    }
+    this.lives = this.lives - num;
+    if (this.lives === 0) {
+      this.level.over();
+    }
+    return this.updateLives();
+  };
+
+  Player.prototype.updateLives = function() {
+    return $('#lives').removeClass().addClass('lives_' + this.lives);
+  };
+
   return Player;
 
-})(Entity);
+})(Sprite);

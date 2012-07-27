@@ -1,54 +1,66 @@
 class Level
-	constructor: (game)->
-
+	constructor: (handle,game)->
 		@game = game
-		@levelNum = game.levelNum
+		@bg = window.assets.getAsset(window.asset_map['levelone'])
+		@game.showHUD()
 		@fps = game.fps
 		
 		@context = game.context
-		@context_width = game.context_width
-		@context_height = game.context_height
+		@context_width = game.canvas.width
+		@context_height = game.canvas.height
 		
 		@player = new Player(@)
 		@bullets = []
-		@enemies = [new Enemy(@)]
 		@explosions = []
+		@drops = []
+		@baddies = []
 		
-		@bg = @game.bg
-		
+	start: ()->
 		@loop = window.setInterval ()=>
 			@updateAll()
 			@drawAll()
+			@drops.push new LifeDrop(@) if Math.random() > @dropLikelyhood
 		, 1000 / @fps
-		
 		
 	updateAll: ()->
 		@player.update() if @player
-		for enemy, i in @enemies
-			enemy.update()
+		
+		for baddie, i in @baddies
+			baddie.update()
 			#Check for collisions and create explosions
 			for bullet in @bullets
-				if ( bullet.x > enemy.x and bullet.x < enemy.x + enemy.width ) and ( bullet.y < enemy.y + enemy.height and bullet.y > enemy.y )
-					@enemies.push(new Enemy(@))
-					bullet.destroyed = true
-					enemy.destroyed = true
-					@explosions.push(new Explosion(@,bullet.x,bullet.y,enemy.width))
-			@enemies.splice(i,1) if enemy.destroyed
+				if @haveCollided(bullet,baddie)
+					@addBaddie()
+					bullet.destroy()
+					baddie.destroy()
+					@explosions.push(new Explosion(@,bullet.x,bullet.y,baddie.width))
+			@baddies.splice(i,1) if baddie.destroyed
+			
 		for bullet, i in @bullets
 			bullet.update()
 			@bullets.splice(i,1) if bullet.destroyed
+			
 		for explosion, i in @explosions
 			explosion.update()
 			@explosions.splice(i,1) if explosion.destroyed
+			
+		for drop, i in @drops
+			if @haveCollided(drop,@player)
+				drop.apply()
+				drop.destroy()
+			drop.update()
+			@drops.splice(i,1) if drop.destroyed
+			
+	haveCollided: (sprite1,sprite2)->
+		return ( sprite1.x < sprite2.x + sprite2.width ) and ( sprite1.x + sprite1.width > sprite2.x ) and ( sprite1.y < sprite2.y + sprite2.height ) and ( sprite1.y + sprite1.height > sprite2.y )
 	
 	drawAll: ()->
-		$('#status').html(@level)
-		# draw the background
 		@drawBG()
 		@player.draw() if @player
-		enemy.draw() for enemy in @enemies
+		baddie.draw() for baddie in @baddies
 		bullet.draw() for bullet in @bullets
 		explosion.draw() for explosion in @explosions
+		drop.draw() for drop in @drops
 	
 	drawRectangle: (color, x, y, width, height)->
 		@context.fillStyle = color
@@ -66,4 +78,5 @@ class Level
 		
 	over: ()->
 		window.clearInterval(@loop)
+		@game.hideHUD()
 		@game.reset()

@@ -27,32 +27,59 @@ progress {
   top: 200px;
   width: 250px; }
 
-#menu {
-  width: 99%;
+.wrapper {
   margin: 0 auto;
-  position: absolute;
-  top: 200px;
-  display: block;
-  opacity: 1;
-  -ms-transition: opacity 0.4s ease-in;
-  -moz-transition: opacity 0.4s ease-in;
-  -webkit-transition: opacity 0.4s ease-in;
-  -o-transition: opacity 0.4s ease-in;
-  transition: opacity 0.4s ease-in; }
-  #menu #start_game {
-    margin: inherit;
-    height: 75px;
-    width: 141px;
+  width: 400px; }
+  .wrapper .interface {
+    width: inherit;
+    margin: 0 auto;
+    position: absolute;
     display: block;
-    text-indent: -9999px;
-    background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent; }
-
-#menu.hidden {
-  pointer-events: none;
-  cursor: default;
-  opacity: 0;
-  -ms-transition: opacity 0.4s ease-in;
-  -moz-transition: opacity 0.4s ease-in;
-  -webkit-transition: opacity 0.4s ease-in;
-  -o-transition: opacity 0.4s ease-in;
-  transition: opacity 0.4s ease-in; }
+    opacity: 1;
+    -ms-transition: opacity 0.4s ease-in;
+    -moz-transition: opacity 0.4s ease-in;
+    -webkit-transition: opacity 0.4s ease-in;
+    -o-transition: opacity 0.4s ease-in;
+    transition: opacity 0.4s ease-in; }
+  .wrapper .interface.hidden {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0;
+    -ms-transition: opacity 0.4s ease-in;
+    -moz-transition: opacity 0.4s ease-in;
+    -webkit-transition: opacity 0.4s ease-in;
+    -o-transition: opacity 0.4s ease-in;
+    transition: opacity 0.4s ease-in; }
+  .wrapper #menu {
+    top: 200px; }
+    .wrapper #menu #start_game {
+      margin: inherit;
+      height: 75px;
+      width: 141px;
+      display: block;
+      text-indent: -9999px;
+      background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent; }
+  .wrapper #hud {
+    height: 27px;
+    top: 581px; }
+    .wrapper #hud #lives {
+      background: url("/assets/images/game/life.png") no-repeat 0 0;
+      display: block;
+      float: left;
+      margin: 7px;
+      width: 97px;
+      height: 12px; }
+    .wrapper #hud #lives.lives_0 {
+      background-position: 0 0; }
+    .wrapper #hud #lives.lives_1 {
+      background-position: 0 -12px; }
+    .wrapper #hud #lives.lives_2 {
+      background-position: 0 -24px; }
+    .wrapper #hud #lives.lives_3 {
+      background-position: 0 -36px; }
+    .wrapper #hud #lives.lives_4 {
+      background-position: 0 -48px; }
+    .wrapper #hud #lives.lives_5 {
+      background-position: 0 -60px; }
+    .wrapper #hud #lives.lives_6 {
+      background-position: 0 -72px; }

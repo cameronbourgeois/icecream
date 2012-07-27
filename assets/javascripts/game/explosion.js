@@ -13,7 +13,7 @@ Explosion = (function() {
     this.y = y;
     this.maxsize = maxsize;
     this.diameter = 1;
-    this.colour = '#FF0000';
+    this.colour = '#e0ca75';
     this.destroyed = false;
     if (addSubExplosion) {
       randomNum = Math.random();

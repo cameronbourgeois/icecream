@@ -10,10 +10,7 @@ Game = (function() {
     this.levelNum = 1;
     this.canvas = document.getElementById('battlefield');
     this.context = this.canvas.getContext('2d');
-    this.context_width = this.canvas.width;
-    this.context_height = this.canvas.height;
-    this.bg = new Image();
-    this.bg.src = $(window.assets.getAsset('/assets/images/game/bg-sky.jpg')).attr('src');
+    this.bg = window.assets.getAsset(window.asset_map['background']);
     this.reset();
     $('#start_game').on('click', this.startGame);
   }
@@ -33,7 +30,8 @@ Game = (function() {
     if (!this.level) {
       this.hideMenu();
       this.playing = true;
-      return this.level = new Level(this);
+      this.level = new LevelOne(this);
+      return this.level.start();
     }
   };
 
@@ -43,6 +41,14 @@ Game = (function() {
 
   Game.prototype.hideMenu = function() {
     return $('#menu').addClass('hidden');
+  };
+
+  Game.prototype.showHUD = function() {
+    return $('#hud').removeClass('hidden');
+  };
+
+  Game.prototype.hideHUD = function() {
+    return $('#hud').addClass('hidden');
   };
 
   return Game;

@@ -3,46 +3,53 @@ var Level;
 
 Level = (function() {
 
-  function Level(game) {
-    var _this = this;
+  function Level(handle, game) {
     this.game = game;
-    this.levelNum = game.levelNum;
+    this.bg = window.assets.getAsset(window.asset_map['levelone']);
+    this.game.showHUD();
     this.fps = game.fps;
     this.context = game.context;
-    this.context_width = game.context_width;
-    this.context_height = game.context_height;
+    this.context_width = game.canvas.width;
+    this.context_height = game.canvas.height;
     this.player = new Player(this);
     this.bullets = [];
-    this.enemies = [new Enemy(this)];
     this.explosions = [];
-    this.bg = this.game.bg;
-    this.loop = window.setInterval(function() {
-      _this.updateAll();
-      return _this.drawAll();
-    }, 1000 / this.fps);
+    this.drops = [];
+    this.baddies = [];
   }
 
+  Level.prototype.start = function() {
+    var _this = this;
+    return this.loop = window.setInterval(function() {
+      _this.updateAll();
+      _this.drawAll();
+      if (Math.random() > _this.dropLikelyhood) {
+        return _this.drops.push(new LifeDrop(_this));
+      }
+    }, 1000 / this.fps);
+  };
+
   Level.prototype.updateAll = function() {
-    var bullet, enemy, explosion, i, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3, _results;
+    var baddie, bullet, drop, explosion, i, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4, _results;
     if (this.player) {
       this.player.update();
     }
-    _ref = this.enemies;
+    _ref = this.baddies;
     for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-      enemy = _ref[i];
-      enemy.update();
+      baddie = _ref[i];
+      baddie.update();
       _ref1 = this.bullets;
       for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
         bullet = _ref1[_j];
-        if ((bullet.x > enemy.x && bullet.x < enemy.x + enemy.width) && (bullet.y < enemy.y + enemy.height && bullet.y > enemy.y)) {
-          this.enemies.push(new Enemy(this));
-          bullet.destroyed = true;
-          enemy.destroyed = true;
-          this.explosions.push(new Explosion(this, bullet.x, bullet.y, enemy.width));
+        if (this.haveCollided(bullet, baddie)) {
+          this.addBaddie();
+          bullet.destroy();
+          baddie.destroy();
+          this.explosions.push(new Explosion(this, bullet.x, bullet.y, baddie.width));
         }
       }
-      if (enemy.destroyed) {
-        this.enemies.splice(i, 1);
+      if (baddie.destroyed) {
+        this.baddies.splice(i, 1);
       }
     }
     _ref2 = this.bullets;
@@ -54,12 +61,24 @@ Level = (function() {
       }
     }
     _ref3 = this.explosions;
-    _results = [];
     for (i = _l = 0, _len3 = _ref3.length; _l < _len3; i = ++_l) {
       explosion = _ref3[i];
       explosion.update();
       if (explosion.destroyed) {
-        _results.push(this.explosions.splice(i, 1));
+        this.explosions.splice(i, 1);
+      }
+    }
+    _ref4 = this.drops;
+    _results = [];
+    for (i = _m = 0, _len4 = _ref4.length; _m < _len4; i = ++_m) {
+      drop = _ref4[i];
+      if (this.haveCollided(drop, this.player)) {
+        drop.apply();
+        drop.destroy();
+      }
+      drop.update();
+      if (drop.destroyed) {
+        _results.push(this.drops.splice(i, 1));
       } else {
         _results.push(void 0);
       }
@@ -67,17 +86,20 @@ Level = (function() {
     return _results;
   };
 
+  Level.prototype.haveCollided = function(sprite1, sprite2) {
+    return (sprite1.x < sprite2.x + sprite2.width) && (sprite1.x + sprite1.width > sprite2.x) && (sprite1.y < sprite2.y + sprite2.height) && (sprite1.y + sprite1.height > sprite2.y);
+  };
+
   Level.prototype.drawAll = function() {
-    var bullet, enemy, explosion, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
-    $('#status').html(this.level);
+    var baddie, bullet, drop, explosion, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3, _results;
     this.drawBG();
     if (this.player) {
       this.player.draw();
     }
-    _ref = this.enemies;
+    _ref = this.baddies;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      enemy = _ref[_i];
-      enemy.draw();
+      baddie = _ref[_i];
+      baddie.draw();
     }
     _ref1 = this.bullets;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
@@ -85,10 +107,15 @@ Level = (function() {
       bullet.draw();
     }
     _ref2 = this.explosions;
-    _results = [];
     for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
       explosion = _ref2[_k];
-      _results.push(explosion.draw());
+      explosion.draw();
+    }
+    _ref3 = this.drops;
+    _results = [];
+    for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
+      drop = _ref3[_l];
+      _results.push(drop.draw());
     }
     return _results;
   };
@@ -112,6 +139,7 @@ Level = (function() {
 
   Level.prototype.over = function() {
     window.clearInterval(this.loop);
+    this.game.hideHUD();
     return this.game.reset();
   };
 

@@ -1,12 +1,9 @@
-class Player extends Entity
+class Player extends Sprite
 	constructor: (level)->
-		@level = level
+		super('player',level)
 		
-		@sprite = new Image()
-		@sprite.src = $(window.assets.getAsset('/assets/images/game/player.png')).attr('src')
-		
-		@width = @sprite.width
-		@height = @sprite.height
+		@lives = 6
+		@updateLives()
 		
 		@x = @level.context_width / 2
 		@y = @level.context_height - 100
@@ -15,8 +12,6 @@ class Player extends Entity
 		@leftPressed = false
 		@rightPressed = false
 		@moving = true
-		@lives = 3
-
 
 		$(window).on 'keydown', (e)=>
 			if e.which is 39 # left
@@ -25,7 +20,6 @@ class Player extends Entity
 				@leftPressed = true
 			else if e.which is 32 # space
 				@level.bullets.push(new Bullet(@level))
-				
 				
 		$(window).on 'keyup', (e)=>
 			if e.which is 39 # left
@@ -38,3 +32,17 @@ class Player extends Entity
 		@y = @y + @accelerationRate if @downPressed and ( @y + @accelerationRate + @height) <= ( @level.context_height + @accelerationRate ) 
 		@x = @x - @accelerationRate if @leftPressed and ( @x - @accelerationRate ) >= 0
 		@x = @x + @accelerationRate if @rightPressed  and ( @x + @accelerationRate + @width ) <= @level.context_width
+		
+		
+	addLife: (num=1)->
+		@lives = @lives + num
+		@lives = 6 if @lives > 6
+		@updateLives()
+		
+	removeLife: (num=1)->
+		@lives = @lives - num
+		@level.over() if @lives is 0
+		@updateLives()
+		
+	updateLives: ()->
+		$('#lives').removeClass().addClass('lives_'+@lives)

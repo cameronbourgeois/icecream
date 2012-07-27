@@ -8,6 +8,7 @@ Bullet = (function(_super) {
   __extends(Bullet, _super);
 
   function Bullet(level) {
+    Bullet.__super__.constructor.call(this, 'bullet', level);
     this.level = level;
     this.x = this.level.player.x + (this.level.player.width / 2) - 3;
     this.y = this.level.player.y;
@@ -16,23 +17,21 @@ Bullet = (function(_super) {
     this.colour = '#ff0';
     this.xAcceleration = 0;
     this.yAcceleration = -8;
-    this.sprite = new Image();
-    this.sprite.src = $(window.assets.getAsset('/assets/images/game/bullet-red.png')).attr('src');
   }
 
   Bullet.prototype.update = function() {
     if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.level.context_height) {
       this.y = this.y + this.yAcceleration;
     } else {
-      this.destroyed = true;
+      this.destroy();
     }
     if (this.x + this.xAcceleration > 0 && this.x + this.xAcceleration + this.width < this.level.context_height) {
       return this.x = this.x + this.xAcceleration;
     } else {
-      return this.destroyed = true;
+      return this.destroy();
     }
   };
 
   return Bullet;
 
-})(Entity);
+})(Sprite);

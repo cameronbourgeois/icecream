@@ -6,11 +6,8 @@ class Game
 		
 		@canvas = document.getElementById('battlefield')
 		@context = @canvas.getContext('2d')
-		@context_width = @canvas.width
-		@context_height = @canvas.height
 		
-		@bg = new Image()
-		@bg.src = $(window.assets.getAsset('/assets/images/game/bg-sky.jpg')).attr('src')		
+		@bg = window.assets.getAsset(window.asset_map['background'])		
 
 		@reset()
 
@@ -29,10 +26,17 @@ class Game
 		if !@level
 			@hideMenu()
 			@playing = true
-			@level = new Level(@)
+			@level = new LevelOne(@)
+			@level.start()
 			
 	showMenu: ()->
 		$('#menu').removeClass 'hidden'
 		
 	hideMenu: ()->
 		$('#menu').addClass 'hidden'
+		
+	showHUD: ()->
+		$('#hud').removeClass 'hidden'
+	
+	hideHUD: ()->
+		$('#hud').addClass 'hidden'

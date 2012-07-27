@@ -1,10 +1,14 @@
 <!DOCTYPE html> 
 <html>
 	
-<head>
-</head>
+	
 
-<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css" />
+<head>
+	<meta charset=UTF-8>
+	<title>Ice Cream Attack!</title>
+	
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css" />
+</head>
 
 <body>
 	
@@ -12,35 +16,63 @@
 	
 	<canvas id="battlefield" width="400" height="600">Get a better browser.</canvas>
 	
-	<div id="menu" class="hidden">
-		<a id="start_game" href="javascript:void(0)" title="Start Game">Start Game</a>
+	<div class="wrapper">
+		<div id="menu" class="interface hidden">
+			<a id="start_game" href="javascript:void(0)" title="Start Game">Start Game</a>
+		</div>
+		<div id="hud" class="interface hidden">
+			<div id="lives" class="lives_0"></div>
+		</div>
 	</div>
 	
 	<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/underscore.js"></script>
+	
 	<script type="text/javascript" src="/assets/javascripts/vendor/assetmanager.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/entity.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/drop.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/enemy.js"></script>
+	
+	<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>
+	
+	<script type="text/javascript" src="/assets/javascripts/game/level/level.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/level/levelone.js"></script>
+	
+	<script type="text/javascript" src="/assets/javascripts/game/sprite.js"></script>
+	
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/baddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananaconebaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananapopbaddie.js"></script>
+	
 	<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
+	
+	<script type="text/javascript" src="/assets/javascripts/game/drop/drop.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/drop/lifedrop.js"></script>
+	
+	
 	<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/level.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>	
 	
 	<script type="text/javascript">
 		
+		window.asset_map = {
+			'bananaconebaddie': '/assets/images/game/banana01.png',
+			'bananapopbaddie': '/assets/images/game/banana02.png',
+			'background': '/assets/images/game/bg-sky.jpg',
+			'levelone': '/assets/images/game/bg-sky.jpg',
+			'player': '/assets/images/game/player.png',
+			'bullet': '/assets/images/game/bullet-red.png',
+			'lifedrop': '/assets/images/game/bonus-life.png'
+		};
+		
 		$(function(){
 			
+
 			var assets = window.assets = new AssetManager();
 			
 			assets.progressBarID = 'assetprogress';
 			
 			// Baddies
-			assets.queueDownload('/assets/images/game/baddie-banana-pop.png');
-			
-			assets.queueDownload('/assets/images/game/bg-sky.jpg');
-			assets.queueDownload('/assets/images/game/player.png');
-			assets.queueDownload('/assets/images/game/bullet-red.png');
+			$.each(window.asset_map,function(name,uri){
+				assets.queueDownload(uri);
+			});
 			
 			assets.downloadAll(function() {
 				window.game = new Game();
