@@ -3,12 +3,12 @@ var Explosion;
 
 Explosion = (function() {
 
-  function Explosion(game, x, y, maxsize, addSubExplosion) {
+  function Explosion(level, x, y, maxsize, addSubExplosion) {
     var randomNum, randomX, randomY;
     if (addSubExplosion == null) {
       addSubExplosion = true;
     }
-    this.game = game;
+    this.level = level;
     this.x = x;
     this.y = y;
     this.maxsize = maxsize;
@@ -28,7 +28,7 @@ Explosion = (function() {
       } else {
         randomY = y + Math.floor(Math.random() * 20);
       }
-      this.game.explosions.push(new Explosion(this.game, randomX, randomY, this.maxsize / 2, false));
+      this.level.explosions.push(new Explosion(this.level, randomX, randomY, this.maxsize / 2, false));
     }
   }
 
@@ -40,7 +40,7 @@ Explosion = (function() {
   };
 
   Explosion.prototype.draw = function() {
-    return this.game.drawCircle(this.colour, this.x, this.y, this.diameter);
+    return this.level.drawCircle(this.colour, this.x, this.y, this.diameter);
   };
 
   return Explosion;

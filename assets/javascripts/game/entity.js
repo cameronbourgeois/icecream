@@ -14,7 +14,7 @@ Entity = (function() {
   Entity.destroyed = false;
 
   Entity.prototype.draw = function() {
-    return this.game.context.drawImage(this.sprite, this.x, this.y);
+    return this.level.context.drawImage(this.sprite, this.x, this.y);
   };
 
   return Entity;

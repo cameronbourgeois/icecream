@@ -7,24 +7,24 @@ Enemy = (function(_super) {
 
   __extends(Enemy, _super);
 
-  function Enemy(game) {
-    this.game = game;
+  function Enemy(level) {
+    this.level = level;
     this.sprite = new Image();
-    this.sprite.src = $('#baddie-banana-pop').attr('src');
+    this.sprite.src = $(window.assets.getAsset('/assets/images/game/baddie-banana-pop.png')).attr('src');
     this.width = this.sprite.width;
     this.height = this.sprite.height;
-    this.x = Math.floor(Math.random() * (this.game.context_width - this.width) + 1);
+    this.x = Math.floor(Math.random() * (this.level.context_width - this.width) + 1);
     this.y = 0;
     this.colour = '#008F7C';
     this.xAcceleration = 0;
-    this.yAcceleration = this.game.level;
+    this.yAcceleration = 3;
   }
 
   Enemy.prototype.update = function() {
-    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.game.canvas.height) {
+    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.level.context_height) {
       return this.y = this.y + this.yAcceleration;
     } else {
-      this.game.over();
+      this.level.over();
       return this.destroyed = true;
     }
   };

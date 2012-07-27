@@ -7,26 +7,26 @@ Bullet = (function(_super) {
 
   __extends(Bullet, _super);
 
-  function Bullet(game) {
-    this.game = game;
-    this.x = this.game.player.x + (this.game.player.width / 2) - 3;
-    this.y = this.game.player.y;
+  function Bullet(level) {
+    this.level = level;
+    this.x = this.level.player.x + (this.level.player.width / 2) - 3;
+    this.y = this.level.player.y;
     this.width = 2;
     this.height = 4;
     this.colour = '#ff0';
     this.xAcceleration = 0;
     this.yAcceleration = -8;
     this.sprite = new Image();
-    this.sprite.src = $('#bullet').attr('src');
+    this.sprite.src = $(window.assets.getAsset('/assets/images/game/bullet-red.png')).attr('src');
   }
 
   Bullet.prototype.update = function() {
-    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.game.canvas.height) {
+    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.level.context_height) {
       this.y = this.y + this.yAcceleration;
     } else {
       this.destroyed = true;
     }
-    if (this.x + this.xAcceleration > 0 && this.x + this.xAcceleration + this.width < this.game.canvas.height) {
+    if (this.x + this.xAcceleration > 0 && this.x + this.xAcceleration + this.width < this.level.context_height) {
       return this.x = this.x + this.xAcceleration;
     } else {
       return this.destroyed = true;

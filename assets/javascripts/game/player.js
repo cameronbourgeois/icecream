@@ -7,15 +7,15 @@ Player = (function(_super) {
 
   __extends(Player, _super);
 
-  function Player(game) {
+  function Player(level) {
     var _this = this;
-    this.game = game;
+    this.level = level;
     this.sprite = new Image();
-    this.sprite.src = $('#player').attr('src');
+    this.sprite.src = $(window.assets.getAsset('/assets/images/game/player.png')).attr('src');
     this.width = this.sprite.width;
     this.height = this.sprite.height;
-    this.x = this.game.context_width / 2;
-    this.y = this.game.context_height - 100;
+    this.x = this.level.context_width / 2;
+    this.y = this.level.context_height - 100;
     this.colour = '#6f46ff';
     this.accelerationRate = 8;
     this.leftPressed = false;
@@ -28,7 +28,7 @@ Player = (function(_super) {
       } else if (e.which === 37) {
         return _this.leftPressed = true;
       } else if (e.which === 32) {
-        return _this.game.bullets.push(new Bullet(_this.game));
+        return _this.level.bullets.push(new Bullet(_this.level));
       }
     });
     $(window).on('keyup', function(e) {
@@ -44,13 +44,13 @@ Player = (function(_super) {
     if (this.upPressed && (this.y - this.accelerationRate) > (0 - this.accelerationRate)) {
       this.y = this.y - this.accelerationRate;
     }
-    if (this.downPressed && (this.y + this.accelerationRate + this.height) <= (this.game.canvas.height + this.accelerationRate)) {
+    if (this.downPressed && (this.y + this.accelerationRate + this.height) <= (this.level.context_height + this.accelerationRate)) {
       this.y = this.y + this.accelerationRate;
     }
     if (this.leftPressed && (this.x - this.accelerationRate) >= 0) {
       this.x = this.x - this.accelerationRate;
     }
-    if (this.rightPressed && (this.x + this.accelerationRate + this.width) <= this.game.canvas.width) {
+    if (this.rightPressed && (this.x + this.accelerationRate + this.width) <= this.level.context_width) {
       return this.x = this.x + this.accelerationRate;
     }
   };

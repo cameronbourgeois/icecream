@@ -18,3 +18,42 @@ canvas
 #preload_holder
 	left: 120px
 	top: 300px
+
+progress
+	display: block
+	margin: auto
+	position: relative
+	top: 200px
+	width: 250px
+
+#menu
+	width: 99%
+	margin: 0 auto
+	position: absolute
+	top: 200px
+	display: block
+	opacity: 1
+	-ms-transition: opacity 0.4s ease-in
+	-moz-transition: opacity 0.4s ease-in
+	-webkit-transition: opacity 0.4s ease-in
+	-o-transition: opacity 0.4s ease-in
+	transition: opacity 0.4s ease-in
+	
+	#start_game	
+		margin: inherit
+		height: 75px
+		width: 141px
+		display: block
+		text-indent: -9999px
+		background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent
+	
+#menu.hidden
+	pointer-events: none
+	cursor: default
+	opacity: 0
+	-ms-transition: opacity 0.4s ease-in
+	-moz-transition: opacity 0.4s ease-in
+	-webkit-transition: opacity 0.4s ease-in
+	-o-transition: opacity 0.4s ease-in
+	transition: opacity 0.4s ease-in
+		

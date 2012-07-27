@@ -4,4 +4,4 @@ class Entity
 	@sprite
 	@destroyed = false
 	draw: ()->
-		@game.context.drawImage(@sprite,@x,@y)
+		@level.context.drawImage(@sprite,@x,@y)

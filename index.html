@@ -8,32 +8,46 @@
 
 <body>
 	
+	<progress id="assetprogress" value="0" max="100"></progress>
+	
 	<canvas id="battlefield" width="400" height="600">Get a better browser.</canvas>
 	
-	<h3 id="preloading" class="message">Preloading Assets...</h3>
+	<div id="menu" class="hidden">
+		<a id="start_game" href="javascript:void(0)" title="Start Game">Start Game</a>
+	</div>
 	
 	<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/assetmanager.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/entity.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/drop.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/enemy.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/level.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>	
 	
-	<div class="preload_holder" style="display:none;">
-		<!-- Temporary preload area -->
-		<img id="baddie-banana-pop" src="/assets/images/game/baddie-banana-pop.png" />
-		<img id="bg-sky" src="/assets/images/game/bg-sky.jpg" />
-		<img id="player" src="/assets/images/game/player.png" />
-		<img id="bullet" src="/assets/images/game/bullet-red.png" />
-	</div>
-	
-	<script type="text/javascript"> 
+	<script type="text/javascript">
+		
 		$(function(){
-			$('#preloading').hide();
-			window.game = new Game();
-		});
+			
+			var assets = window.assets = new AssetManager();
+			
+			assets.progressBarID = 'assetprogress';
+			
+			// Baddies
+			assets.queueDownload('/assets/images/game/baddie-banana-pop.png');
+			
+			assets.queueDownload('/assets/images/game/bg-sky.jpg');
+			assets.queueDownload('/assets/images/game/player.png');
+			assets.queueDownload('/assets/images/game/bullet-red.png');
+			
+			assets.downloadAll(function() {
+				window.game = new Game();
+			});
+			
+		})
+		
 	</script>
 
 </body>
