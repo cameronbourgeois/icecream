@@ -9,7 +9,6 @@ SpeedDrop = (function(_super) {
 
   function SpeedDrop(level) {
     SpeedDrop.__super__.constructor.call(this, 'speeddrop', level);
-    this.yAcceleration = 10;
     this.speedModifier = 1.75;
   }
 

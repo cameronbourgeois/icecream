@@ -1,6 +1,5 @@
 class Game
 	constructor: ()->
-		
 		@fps = 60
 		@levelNum = 1
 		

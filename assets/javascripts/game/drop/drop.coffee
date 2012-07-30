@@ -1,6 +1,8 @@
 class Drop extends Sprite
 	constructor: (handle,level)->
 		super(handle,level)
+		
+		@yAcceleration = 5
 
 		@width = @sprite.width
 		@height = @sprite.height
@@ -12,7 +14,7 @@ class Drop extends Sprite
 			ySpeed =  @yAcceleration * @level.speedModifier
 		else
 			ySpeed = @yAcceleration
-		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.bottomOfLevel
+		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.ground
 			@y = @y + ySpeed
 		else
 	 		@destroy()

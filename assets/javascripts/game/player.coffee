@@ -2,54 +2,52 @@ class Player extends Sprite
 	constructor: (level)->
 		super('player',level)
 		
-		@lives = 6
-		@updateLives()
+		@health = 6
+		@updateHealth()
 		
 		@killStreak = 0
 		
 		@x = @level.context_width / 2
-		@y = @level.context_height - 100
+		@y = @level.ground - @height
 		@colour = '#6f46ff'
-		@accelerationRate = 8
+		@xAcceleration = 8
+		@yAcceleration = 0
+		@upPressed = false
 		@leftPressed = false
 		@rightPressed = false
-		@moving = true
 
 		$(window).on 'keydown', (e)=>
-			if e.which is 39 # left
-				@rightPressed = true
-			else if e.which is 37 # right
-				@leftPressed = true
-			else if e.which is 32 # space
-				@level.bullets.push(new Bullet(@level))
+			switch e.which
+				when 38 then @upPressed = true #up
+				when 39 then @rightPressed = true #left
+				when 37 then @leftPressed = true #right
+				when 32 then @level.bullets.push(new Bullet(@level)) #space
 				
 		$(window).on 'keyup', (e)=>
-			if e.which is 39 # left
-				@rightPressed = false
-			else if e.which is 37 # right
-				@leftPressed = false
+			switch e.which
+				when 38 then @upPressed = false #up
+				when 39 then @rightPressed = false #right
+				when 37 then @leftPressed = false #left
 
 	update: ()->
-		#if @level.speedModifier isnt 1
-		#	speed =  @accelerationRate * @level.speedModifier
-		#else
-		speed = @accelerationRate
-		@x = @x - speed if @leftPressed and ( @x - speed ) >= 0
-		@x = @x + speed if @rightPressed  and ( @x + speed + @width ) <= @level.context_width
+		@x = @x - @xAcceleration if @leftPressed and ( @x - @xAcceleration ) >= 0
+		@x = @x + @xAcceleration if @rightPressed  and ( @x + @xAcceleration + @width ) <= @level.context_width
 		
 	incrementKillStreak: ()->
-		@killStreak++	
+		@killStreak++
 		
-	addLife: (num=1)->
-		@lives = @lives + num
-		@lives = 6 if @lives > 6
-		@updateLives()
-		
-	removeLife: (num=1)->
+	resetKillStreak: ()->
 		@killStreak = 0
-		@lives = @lives - num
-		@level.over() if @lives is 0
-		@updateLives()
 		
-	updateLives: ()->
-		$('#lives').removeClass().addClass('lives_'+@lives)
+	replenishHealth: (amount=1)->
+		@health = @health + amount if @health < 6
+		@updateHealth()
+		
+	damageHealth: (amount=1)->
+		@resetKillStreak()
+		@health = @health - amount
+		@level.over() if @health is 0
+		@updateHealth()
+		
+	updateHealth: ()->
+		$('#health').removeClass().addClass('health_'+@health)

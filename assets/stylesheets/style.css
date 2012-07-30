@@ -79,24 +79,24 @@ progress {
     .wrapper #hud #points {
       float: right;
       margin: 6px; }
-    .wrapper #hud #lives {
+    .wrapper #hud #health {
       background: url("/assets/images/game/life.png") no-repeat 0 0;
       display: block;
       float: left;
       margin: 7px;
       width: 97px;
       height: 12px; }
-    .wrapper #hud #lives.lives_0 {
+    .wrapper #hud #health.health_0 {
       background-position: 0 0; }
-    .wrapper #hud #lives.lives_1 {
+    .wrapper #hud #health.health_1 {
       background-position: 0 -12px; }
-    .wrapper #hud #lives.lives_2 {
+    .wrapper #hud #health.health_2 {
       background-position: 0 -24px; }
-    .wrapper #hud #lives.lives_3 {
+    .wrapper #hud #health.health_3 {
       background-position: 0 -36px; }
-    .wrapper #hud #lives.lives_4 {
+    .wrapper #hud #health.health_4 {
       background-position: 0 -48px; }
-    .wrapper #hud #lives.lives_5 {
+    .wrapper #hud #health.health_5 {
       background-position: 0 -60px; }
-    .wrapper #hud #lives.lives_6 {
+    .wrapper #hud #health.health_6 {
       background-position: 0 -72px; }

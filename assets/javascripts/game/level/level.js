@@ -16,6 +16,7 @@ Level = (function() {
     this.context = game.context;
     this.context_width = game.canvas.width;
     this.context_height = game.canvas.height;
+    this.ground = this.context_height - 30;
     this.player = new Player(this);
     this.points = 0;
     this.bullets = [];
@@ -30,11 +31,12 @@ Level = (function() {
       $('#messages').html('');
       $('#messages').append(window.assets.getAsset(window.asset_map[this.handle]));
       $('#messages').removeClass('hidden');
-      return window.setTimeout(function() {
+      window.setTimeout(function() {
         $('#messages').addClass('hidden');
         _this.playing = true;
         return _this.loop = window.setInterval(_this.loopFunc, 1000 / _this.fps);
       }, 2000);
+      return this.playing = true;
     }
   };
 

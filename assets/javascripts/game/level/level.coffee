@@ -12,6 +12,8 @@ class Level
 		@context_width = game.canvas.width
 		@context_height = game.canvas.height
 		
+		@ground = @context_height - 30
+		
 		@player = new Player(@)
 		@points = 0
 		@bullets = []
@@ -29,6 +31,7 @@ class Level
 				@playing = true
 				@loop = window.setInterval @loopFunc, 1000 / @fps
 			, 2000
+			@playing = true
 		
 	loopFunc: ()=>
 		@over() if @checkPassed()
@@ -45,7 +48,6 @@ class Level
 			#Check for collisions and create explosions
 			for bullet in @bullets
 				if @haveCollided(bullet,baddie)
-					# Work out the points
 					@player.incrementKillStreak()
 					@points = Math.floor( @points + ( baddie.points * @player.killStreak ) )
 					bullet.destroy()

@@ -9,6 +9,7 @@ Drop = (function(_super) {
 
   function Drop(handle, level) {
     Drop.__super__.constructor.call(this, handle, level);
+    this.yAcceleration = 5;
     this.width = this.sprite.width;
     this.height = this.sprite.height;
     this.x = Math.floor(Math.random() * (this.level.context_width - this.width) + 1);
@@ -22,7 +23,7 @@ Drop = (function(_super) {
     } else {
       ySpeed = this.yAcceleration;
     }
-    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.bottomOfLevel) {
+    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.ground) {
       return this.y = this.y + ySpeed;
     } else {
       return this.destroy();

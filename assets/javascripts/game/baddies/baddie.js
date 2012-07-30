@@ -25,10 +25,10 @@ Baddie = (function(_super) {
     } else {
       ySpeed = this.yAcceleration;
     }
-    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.bottomOfLevel) {
+    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.ground) {
       return this.y = this.y + ySpeed;
     } else {
-      this.level.player.removeLife();
+      this.level.player.damageHealth();
       return this.destroy();
     }
   };

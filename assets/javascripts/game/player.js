@@ -10,42 +10,47 @@ Player = (function(_super) {
   function Player(level) {
     var _this = this;
     Player.__super__.constructor.call(this, 'player', level);
-    this.lives = 6;
-    this.updateLives();
+    this.health = 6;
+    this.updateHealth();
     this.killStreak = 0;
     this.x = this.level.context_width / 2;
-    this.y = this.level.context_height - 100;
+    this.y = this.level.ground - this.height;
     this.colour = '#6f46ff';
-    this.accelerationRate = 8;
+    this.xAcceleration = 8;
+    this.yAcceleration = 0;
+    this.upPressed = false;
     this.leftPressed = false;
     this.rightPressed = false;
-    this.moving = true;
     $(window).on('keydown', function(e) {
-      if (e.which === 39) {
-        return _this.rightPressed = true;
-      } else if (e.which === 37) {
-        return _this.leftPressed = true;
-      } else if (e.which === 32) {
-        return _this.level.bullets.push(new Bullet(_this.level));
+      switch (e.which) {
+        case 38:
+          return _this.upPressed = true;
+        case 39:
+          return _this.rightPressed = true;
+        case 37:
+          return _this.leftPressed = true;
+        case 32:
+          return _this.level.bullets.push(new Bullet(_this.level));
       }
     });
     $(window).on('keyup', function(e) {
-      if (e.which === 39) {
-        return _this.rightPressed = false;
-      } else if (e.which === 37) {
-        return _this.leftPressed = false;
+      switch (e.which) {
+        case 38:
+          return _this.upPressed = false;
+        case 39:
+          return _this.rightPressed = false;
+        case 37:
+          return _this.leftPressed = false;
       }
     });
   }
 
   Player.prototype.update = function() {
-    var speed;
-    speed = this.accelerationRate;
-    if (this.leftPressed && (this.x - speed) >= 0) {
-      this.x = this.x - speed;
+    if (this.leftPressed && (this.x - this.xAcceleration) >= 0) {
+      this.x = this.x - this.xAcceleration;
     }
-    if (this.rightPressed && (this.x + speed + this.width) <= this.level.context_width) {
-      return this.x = this.x + speed;
+    if (this.rightPressed && (this.x + this.xAcceleration + this.width) <= this.level.context_width) {
+      return this.x = this.x + this.xAcceleration;
     }
   };
 
@@ -53,31 +58,34 @@ Player = (function(_super) {
     return this.killStreak++;
   };
 
-  Player.prototype.addLife = function(num) {
-    if (num == null) {
-      num = 1;
-    }
-    this.lives = this.lives + num;
-    if (this.lives > 6) {
-      this.lives = 6;
-    }
-    return this.updateLives();
+  Player.prototype.resetKillStreak = function() {
+    return this.killStreak = 0;
   };
 
-  Player.prototype.removeLife = function(num) {
-    if (num == null) {
-      num = 1;
+  Player.prototype.replenishHealth = function(amount) {
+    if (amount == null) {
+      amount = 1;
     }
-    this.killStreak = 0;
-    this.lives = this.lives - num;
-    if (this.lives === 0) {
+    if (this.health < 6) {
+      this.health = this.health + amount;
+    }
+    return this.updateHealth();
+  };
+
+  Player.prototype.damageHealth = function(amount) {
+    if (amount == null) {
+      amount = 1;
+    }
+    this.resetKillStreak();
+    this.health = this.health - amount;
+    if (this.health === 0) {
       this.level.over();
     }
-    return this.updateLives();
+    return this.updateHealth();
   };
 
-  Player.prototype.updateLives = function() {
-    return $('#lives').removeClass().addClass('lives_' + this.lives);
+  Player.prototype.updateHealth = function() {
+    return $('#health').removeClass().addClass('health_' + this.health);
   };
 
   return Player;

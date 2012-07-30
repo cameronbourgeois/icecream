@@ -1,15 +1,14 @@
 class LevelOne extends Level
 	constructor: (game)->
 		super('levelone',game)
-		@baseSpeed = 4
+		@baseSpeed = 3
 		@dropLikelyhood = 0.998
-		@baddieLikelyhood = 0.95
-		@bottomOfLevel = @context_height - 26
+		@baddieLikelyhood = 0.96
 		@colour = '#e0ca75'
 		@addBaddie()
 		
 	checkPassed: ()->
-		@points > 1000
+		@points > 10000
 	
 	addBaddie: ()->
 		if Math.random() > 0.5
@@ -18,9 +17,8 @@ class LevelOne extends Level
 			@baddies.push(new BananaPopBaddie(@))
 			
 	addDrop: ()->
-		random = Math.random()
-		if random > 0.9
-			@drops.push new LifeDrop(@)
+		if Math.random() > 0.7
+			@drops.push new HealthDrop(@)
 		else if Math.random() > 0.5 # and @speedModifier is 1
 			@drops.push new SpeedDrop(@)
 		else # if @speedModifier is 1

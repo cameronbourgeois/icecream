@@ -9,16 +9,15 @@ LevelOne = (function(_super) {
 
   function LevelOne(game) {
     LevelOne.__super__.constructor.call(this, 'levelone', game);
-    this.baseSpeed = 4;
+    this.baseSpeed = 3;
     this.dropLikelyhood = 0.998;
-    this.baddieLikelyhood = 0.95;
-    this.bottomOfLevel = this.context_height - 26;
+    this.baddieLikelyhood = 0.96;
     this.colour = '#e0ca75';
     this.addBaddie();
   }
 
   LevelOne.prototype.checkPassed = function() {
-    return this.points > 1000;
+    return this.points > 10000;
   };
 
   LevelOne.prototype.addBaddie = function() {
@@ -30,10 +29,8 @@ LevelOne = (function(_super) {
   };
 
   LevelOne.prototype.addDrop = function() {
-    var random;
-    random = Math.random();
-    if (random > 0.9) {
-      return this.drops.push(new LifeDrop(this));
+    if (Math.random() > 0.7) {
+      return this.drops.push(new HealthDrop(this));
     } else if (Math.random() > 0.5) {
       return this.drops.push(new SpeedDrop(this));
     } else {

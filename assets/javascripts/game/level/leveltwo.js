@@ -9,16 +9,15 @@ LevelTwo = (function(_super) {
 
   function LevelTwo(game) {
     LevelTwo.__super__.constructor.call(this, 'leveltwo', game);
-    this.baseSpeed = 6;
+    this.baseSpeed = 5;
     this.dropLikelyhood = 0.998;
     this.baddieLikelyhood = 0.93;
-    this.bottomOfLevel = this.context_height - 26;
     this.colour = '#add3c6';
     this.addBaddie();
   }
 
   LevelTwo.prototype.checkPassed = function() {
-    return this.points > 1000;
+    return this.points > 10000;
   };
 
   LevelTwo.prototype.over = function() {
@@ -35,10 +34,8 @@ LevelTwo = (function(_super) {
   };
 
   LevelTwo.prototype.addDrop = function() {
-    var random;
-    random = Math.random();
-    if (random > 0.9) {
-      return this.drops.push(new LifeDrop(this));
+    if (Math.random() > 0.8) {
+      return this.drops.push(new HealthDrop(this));
     } else if (Math.random() > 0.5) {
       return this.drops.push(new SpeedDrop(this));
     } else {

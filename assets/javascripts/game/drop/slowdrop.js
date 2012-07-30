@@ -9,7 +9,6 @@ SlowDrop = (function(_super) {
 
   function SlowDrop(level) {
     SlowDrop.__super__.constructor.call(this, 'slowdrop', level);
-    this.yAcceleration = 10;
     this.speedModifier = 0.5;
   }
 

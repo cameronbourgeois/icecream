@@ -16,10 +16,10 @@ class Baddie extends Sprite
 		else
 			ySpeed = @yAcceleration
 		# Make sure you're still within the bounds of the canvas
-		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.bottomOfLevel
+		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.ground
 			@y = @y + ySpeed
 		else
-	 		@level.player.removeLife()
+	 		@level.player.damageHealth()
 	 		@destroy()
 ###
 Remember this for opacity
