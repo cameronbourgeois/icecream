@@ -1,5 +1,5 @@
-class BananaConeBaddie extends Baddie
+class PistachioConeBaddie extends Baddie
 	constructor: (level)->
-		super('bananaconebaddie',level)
+		super('pistachioconebaddie',level)
 		@yAcceleration = @yAcceleration * 1.5
 		@points = @yAcceleration

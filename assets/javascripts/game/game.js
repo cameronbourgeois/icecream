@@ -16,6 +16,7 @@ Game = (function() {
   }
 
   Game.prototype.reset = function() {
+    this.levelNum = 1;
     delete this.level;
     this.drawBG();
     return this.showMenu();
@@ -30,9 +31,19 @@ Game = (function() {
     if (!this.level) {
       this.hideMenu();
       this.playing = true;
-      this.level = new LevelOne(this);
+      if (this.levelNum === 1) {
+        this.level = new LevelOne(this);
+      }
       return this.level.start();
     }
+  };
+
+  Game.prototype.nextLevel = function() {
+    delete this.level;
+    if (this.levelNum === 2) {
+      this.level = new LevelTwo(this);
+    }
+    return this.level.start();
   };
 
   Game.prototype.showMenu = function() {

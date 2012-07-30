@@ -12,6 +12,7 @@ Player = (function(_super) {
     Player.__super__.constructor.call(this, 'player', level);
     this.lives = 6;
     this.updateLives();
+    this.killStreak = 0;
     this.x = this.level.context_width / 2;
     this.y = this.level.context_height - 100;
     this.colour = '#6f46ff';
@@ -38,18 +39,18 @@ Player = (function(_super) {
   }
 
   Player.prototype.update = function() {
-    if (this.upPressed && (this.y - this.accelerationRate) > (0 - this.accelerationRate)) {
-      this.y = this.y - this.accelerationRate;
+    var speed;
+    speed = this.accelerationRate;
+    if (this.leftPressed && (this.x - speed) >= 0) {
+      this.x = this.x - speed;
     }
-    if (this.downPressed && (this.y + this.accelerationRate + this.height) <= (this.level.context_height + this.accelerationRate)) {
-      this.y = this.y + this.accelerationRate;
+    if (this.rightPressed && (this.x + speed + this.width) <= this.level.context_width) {
+      return this.x = this.x + speed;
     }
-    if (this.leftPressed && (this.x - this.accelerationRate) >= 0) {
-      this.x = this.x - this.accelerationRate;
-    }
-    if (this.rightPressed && (this.x + this.accelerationRate + this.width) <= this.level.context_width) {
-      return this.x = this.x + this.accelerationRate;
-    }
+  };
+
+  Player.prototype.incrementKillStreak = function() {
+    return this.killStreak++;
   };
 
   Player.prototype.addLife = function(num) {
@@ -67,6 +68,7 @@ Player = (function(_super) {
     if (num == null) {
       num = 1;
     }
+    this.killStreak = 0;
     this.lives = this.lives - num;
     if (this.lives === 0) {
       this.level.over();

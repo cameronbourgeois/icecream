@@ -12,11 +12,11 @@ class Bullet extends Sprite
 		@yAcceleration = -8
 
 	update: ()->
-		if @y + @yAcceleration > 0 and @y + @yAcceleration + @height < @level.context_height
-			@y = @y + @yAcceleration
+		if @level.speedModifier isnt 1
+			ySpeed =  @yAcceleration * @level.speedModifier
 		else
-			@destroy()
-		if @x + @xAcceleration > 0 and @x + @xAcceleration + @width < @level.context_height
-			@x = @x + @xAcceleration
+			ySpeed = @yAcceleration
+		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.context_height
+			@y = @y + ySpeed
 		else
 			@destroy()

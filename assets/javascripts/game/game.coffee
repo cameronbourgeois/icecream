@@ -14,6 +14,7 @@ class Game
 		$('#start_game').on 'click', @startGame
 
 	reset: ()->
+		@levelNum = 1
 		delete @level
 		@drawBG()
 		@showMenu()
@@ -26,8 +27,15 @@ class Game
 		if !@level
 			@hideMenu()
 			@playing = true
-			@level = new LevelOne(@)
+			if @levelNum is 1
+				@level = new LevelOne(@)
 			@level.start()
+			
+	nextLevel: ()->
+		delete @level
+		if @levelNum is 2
+			@level = new LevelTwo(@)
+		@level.start()
 			
 	showMenu: ()->
 		$('#menu').removeClass 'hidden'

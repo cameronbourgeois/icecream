@@ -4,18 +4,22 @@ class Baddie extends Sprite
 
 		@width = @sprite.width
 		@height = @sprite.height
-		@x = Math.floor( Math.random() * ( @level.context_width - @width ) + 1 ) # Randomise entry
+		@x = Math.floor( Math.random() * ( @level.context_width - @width ) + 1 ) # Randomise entry point
 		@y = 0
 		@xAcceleration = 0
-		@yAcceleration = 6
+		@yAcceleration = @level.baseSpeed
+		@points = @level.baseSpeed
 
 	update: ()->
+		if @level.speedModifier isnt 1
+			ySpeed =  @yAcceleration * @level.speedModifier
+		else
+			ySpeed = @yAcceleration
 		# Make sure you're still within the bounds of the canvas
-		if @y + @yAcceleration > 0 and @y + @yAcceleration + @height < @level.context_height
-			@y = @y + @yAcceleration
+		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.bottomOfLevel
+			@y = @y + ySpeed
 		else
 	 		@level.player.removeLife()
-	 		@level.addBaddie()
 	 		@destroy()
 ###
 Remember this for opacity

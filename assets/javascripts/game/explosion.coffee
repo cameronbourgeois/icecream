@@ -5,7 +5,7 @@ class Explosion
 		@y = y
 		@maxsize = maxsize
 		@diameter = 1
-		@colour = '#e0ca75'
+		@colour = @level.colour
 		@destroyed = false
 		
 		if (addSubExplosion)

@@ -17,11 +17,15 @@
 	<canvas id="battlefield" width="400" height="600">Get a better browser.</canvas>
 	
 	<div class="wrapper">
+		<div id="messages" class="interface hidden">
+		</div>
 		<div id="menu" class="interface hidden">
+			<div id="logo"></div>
 			<a id="start_game" href="javascript:void(0)" title="Start Game">Start Game</a>
 		</div>
 		<div id="hud" class="interface hidden">
 			<div id="lives" class="lives_0"></div>
+			<div id="points">0</div>
 		</div>
 	</div>
 	
@@ -34,17 +38,22 @@
 	
 	<script type="text/javascript" src="/assets/javascripts/game/level/level.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/level/levelone.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/level/leveltwo.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/sprite.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/baddies/baddie.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananaconebaddie.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananapopbaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/pistachioconebaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/pistachiopopbaddie.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/drop/drop.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/drop/lifedrop.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/drop/speeddrop.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/drop/slowdrop.js"></script>
 	
 	
 	<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
@@ -52,14 +61,25 @@
 	
 	<script type="text/javascript">
 		
+		// Array of assets. The key is the 'handle' used by each object.
 		window.asset_map = {
-			'bananaconebaddie': '/assets/images/game/banana01.png',
-			'bananapopbaddie': '/assets/images/game/banana02.png',
+			'bananapopbaddie': '/assets/images/game/banana01.png',
+			'bananaconebaddie': '/assets/images/game/banana02.png',
+			'pistachiopopbaddie': '/assets/images/game/pistachio01.png',
+			'pistachioconebaddie': '/assets/images/game/pistachio02.png',
 			'background': '/assets/images/game/bg-sky.jpg',
-			'levelone': '/assets/images/game/bg-sky.jpg',
-			'player': '/assets/images/game/player.png',
+			'levelone-bg': '/assets/images/game/bg-sky.jpg',
+			'levelone': '/assets/images/game/level01.png',
+			'leveltwo-bg': '/assets/images/game/bg-sky.jpg',
+			'leveltwo': '/assets/images/game/level02.png',
+			'levelthree-bg': '/assets/images/game/bg-sky.jpg',
+			'levelthree': '/assets/images/game/level03.png',
+			'player2': '/assets/images/game/player.png',
+			'player': '/assets/images/game/player02.png',
 			'bullet': '/assets/images/game/bullet-red.png',
-			'lifedrop': '/assets/images/game/bonus-life.png'
+			'lifedrop': '/assets/images/game/bonus-life.png',
+			'speeddrop': '/assets/images/game/bonus-speed.png',
+			'slowdrop': '/assets/images/game/bonus-slow.png'
 		};
 		
 		$(function(){

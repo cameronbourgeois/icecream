@@ -8,8 +8,11 @@ class Drop extends Sprite
 		@y = 0
 
 	update: ()->
-		# Make sure you're still within the bounds of the canvas
-		if @y + @yAcceleration > 0 and @y + @yAcceleration + @height < @level.context_height
-			@y = @y + @yAcceleration
+		if @level.speedModifier isnt 1
+			ySpeed =  @yAcceleration * @level.speedModifier
+		else
+			ySpeed = @yAcceleration
+		if @y + ySpeed > 0 and @y + ySpeed + @height < @level.bottomOfLevel
+			@y = @y + ySpeed
 		else
 	 		@destroy()

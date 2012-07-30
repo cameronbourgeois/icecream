@@ -14,15 +14,21 @@ Baddie = (function(_super) {
     this.x = Math.floor(Math.random() * (this.level.context_width - this.width) + 1);
     this.y = 0;
     this.xAcceleration = 0;
-    this.yAcceleration = 6;
+    this.yAcceleration = this.level.baseSpeed;
+    this.points = this.level.baseSpeed;
   }
 
   Baddie.prototype.update = function() {
-    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.level.context_height) {
-      return this.y = this.y + this.yAcceleration;
+    var ySpeed;
+    if (this.level.speedModifier !== 1) {
+      ySpeed = this.yAcceleration * this.level.speedModifier;
+    } else {
+      ySpeed = this.yAcceleration;
+    }
+    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.bottomOfLevel) {
+      return this.y = this.y + ySpeed;
     } else {
       this.level.player.removeLife();
-      this.level.addBaddie();
       return this.destroy();
     }
   };

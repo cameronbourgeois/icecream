@@ -20,13 +20,14 @@ Bullet = (function(_super) {
   }
 
   Bullet.prototype.update = function() {
-    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.level.context_height) {
-      this.y = this.y + this.yAcceleration;
+    var ySpeed;
+    if (this.level.speedModifier !== 1) {
+      ySpeed = this.yAcceleration * this.level.speedModifier;
     } else {
-      this.destroy();
+      ySpeed = this.yAcceleration;
     }
-    if (this.x + this.xAcceleration > 0 && this.x + this.xAcceleration + this.width < this.level.context_height) {
-      return this.x = this.x + this.xAcceleration;
+    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.context_height) {
+      return this.y = this.y + ySpeed;
     } else {
       return this.destroy();
     }

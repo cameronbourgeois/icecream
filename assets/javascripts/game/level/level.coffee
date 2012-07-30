@@ -1,26 +1,41 @@
 class Level
 	constructor: (handle,game)->
 		@game = game
-		@bg = window.assets.getAsset(window.asset_map['levelone'])
+		@handle = handle
+		@playing = false
+		@bg = window.assets.getAsset(window.asset_map[@handle+'-bg'])
 		@game.showHUD()
 		@fps = game.fps
+		@speedModifier = 1
 		
 		@context = game.context
 		@context_width = game.canvas.width
 		@context_height = game.canvas.height
 		
 		@player = new Player(@)
+		@points = 0
 		@bullets = []
 		@explosions = []
 		@drops = []
 		@baddies = []
 		
 	start: ()->
-		@loop = window.setInterval ()=>
-			@updateAll()
-			@drawAll()
-			@drops.push new LifeDrop(@) if Math.random() > @dropLikelyhood
-		, 1000 / @fps
+		if not @playing
+			$('#messages').html('')
+			$('#messages').append(window.assets.getAsset(window.asset_map[@handle]));
+			$('#messages').removeClass 'hidden'
+			window.setTimeout ()=>
+				$('#messages').addClass 'hidden'
+				@playing = true
+				@loop = window.setInterval @loopFunc, 1000 / @fps
+			, 2000
+		
+	loopFunc: ()=>
+		@over() if @checkPassed()
+		@updateAll()
+		@drawAll()
+		@addDrop() if Math.random() > @dropLikelyhood
+		@addBaddie() if Math.random() > @baddieLikelyhood
 		
 	updateAll: ()->
 		@player.update() if @player
@@ -30,7 +45,9 @@ class Level
 			#Check for collisions and create explosions
 			for bullet in @bullets
 				if @haveCollided(bullet,baddie)
-					@addBaddie()
+					# Work out the points
+					@player.incrementKillStreak()
+					@points = Math.floor( @points + ( baddie.points * @player.killStreak ) )
 					bullet.destroy()
 					baddie.destroy()
 					@explosions.push(new Explosion(@,bullet.x,bullet.y,baddie.width))
@@ -55,6 +72,7 @@ class Level
 		return ( sprite1.x < sprite2.x + sprite2.width ) and ( sprite1.x + sprite1.width > sprite2.x ) and ( sprite1.y < sprite2.y + sprite2.height ) and ( sprite1.y + sprite1.height > sprite2.y )
 	
 	drawAll: ()->
+		$('#points').html(@points)
 		@drawBG()
 		@player.draw() if @player
 		baddie.draw() for baddie in @baddies
@@ -76,7 +94,21 @@ class Level
 	drawBG: ()->
 		@context.drawImage(@bg,0,0)
 		
-	over: ()->
+	addDrop: ()->
+		# Undefined
+		
+	addBaddie: ()->
+		# Undefined	
+		
+	stop: ()->
+		@playing = false
 		window.clearInterval(@loop)
-		@game.hideHUD()
-		@game.reset()
+		@game.hideHUD()	
+		
+	over: ()->
+		@stop()
+		if @checkPassed()
+			@game.levelNum++
+			@game.nextLevel()
+		else
+			@game.reset()

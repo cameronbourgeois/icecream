@@ -16,8 +16,14 @@ Drop = (function(_super) {
   }
 
   Drop.prototype.update = function() {
-    if (this.y + this.yAcceleration > 0 && this.y + this.yAcceleration + this.height < this.level.context_height) {
-      return this.y = this.y + this.yAcceleration;
+    var ySpeed;
+    if (this.level.speedModifier !== 1) {
+      ySpeed = this.yAcceleration * this.level.speedModifier;
+    } else {
+      ySpeed = this.yAcceleration;
+    }
+    if (this.y + ySpeed > 0 && this.y + ySpeed + this.height < this.level.bottomOfLevel) {
+      return this.y = this.y + ySpeed;
     } else {
       return this.destroy();
     }

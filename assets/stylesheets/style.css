@@ -50,18 +50,35 @@ progress {
     -webkit-transition: opacity 0.4s ease-in;
     -o-transition: opacity 0.4s ease-in;
     transition: opacity 0.4s ease-in; }
+  .wrapper #messages {
+    height: 120px;
+    top: 250px; }
   .wrapper #menu {
-    top: 200px; }
+    top: 250px;
+    background-color: #67686a;
+    height: 120px; }
+    .wrapper #menu #logo {
+      margin: inherit;
+      height: 69px;
+      width: 141px;
+      position: relative;
+      top: 16px;
+      background: url("/assets/images/game/logo-bgblack.png") no-repeat 0 0 transparent; }
     .wrapper #menu #start_game {
       margin: inherit;
       height: 75px;
       width: 141px;
-      display: block;
       text-indent: -9999px;
+      position: relative;
+      top: 27px;
+      display: block;
       background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent; }
   .wrapper #hud {
     height: 27px;
     top: 581px; }
+    .wrapper #hud #points {
+      float: right;
+      margin: 6px; }
     .wrapper #hud #lives {
       background: url("/assets/images/game/life.png") no-repeat 0 0;
       display: block;
