@@ -21,6 +21,7 @@ class Baddie extends Sprite
 		else
 	 		@level.player.damageHealth()
 	 		@destroy()
+	 		
 ###
 Remember this for opacity
 	draw: ()->

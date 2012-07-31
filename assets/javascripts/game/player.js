@@ -10,6 +10,7 @@ Player = (function(_super) {
   function Player(level) {
     var _this = this;
     Player.__super__.constructor.call(this, 'player', level);
+    this.spriterocket = window.assets.getAsset(window.asset_map[this.handle + '-rocket']);
     this.health = 6;
     this.updateHealth();
     this.killStreak = 0;
@@ -50,8 +51,29 @@ Player = (function(_super) {
       this.x = this.x - this.xAcceleration;
     }
     if (this.rightPressed && (this.x + this.xAcceleration + this.width) <= this.level.context_width) {
-      return this.x = this.x + this.xAcceleration;
+      this.x = this.x + this.xAcceleration;
     }
+    if (this.upPressed && this.yAcceleration < 10) {
+      this.yAcceleration++;
+    } else {
+      if (this.yAcceleration > -10) {
+        this.yAcceleration--;
+      }
+    }
+    console.log(this.yAcceleration);
+    if ((this.y - this.yAcceleration) > 0 && (this.y - this.yAcceleration) + this.height < this.level.ground) {
+      return this.y = this.y - this.yAcceleration;
+    }
+  };
+
+  Player.prototype.draw = function() {
+    var sprite;
+    if (this.upPressed) {
+      sprite = this.spriterocket;
+    } else {
+      sprite = this.sprite;
+    }
+    return this.level.context.drawImage(sprite, this.x, this.y);
   };
 
   Player.prototype.incrementKillStreak = function() {

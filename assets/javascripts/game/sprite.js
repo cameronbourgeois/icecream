@@ -10,6 +10,7 @@ Sprite = (function() {
   Sprite.destroyed = false;
 
   function Sprite(handle, level) {
+    this.handle = handle;
     this.level = level;
     this.sprite = window.assets.getAsset(window.asset_map[handle]);
     this.width = this.sprite.width;

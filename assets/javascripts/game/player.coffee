@@ -2,6 +2,8 @@ class Player extends Sprite
 	constructor: (level)->
 		super('player',level)
 		
+		@spriterocket = window.assets.getAsset(window.asset_map[@handle+'-rocket'])
+		
 		@health = 6
 		@updateHealth()
 		
@@ -32,6 +34,19 @@ class Player extends Sprite
 	update: ()->
 		@x = @x - @xAcceleration if @leftPressed and ( @x - @xAcceleration ) >= 0
 		@x = @x + @xAcceleration if @rightPressed  and ( @x + @xAcceleration + @width ) <= @level.context_width
+		if @upPressed and @yAcceleration < 10
+			@yAcceleration++
+		else 
+			@yAcceleration-- if @yAcceleration > -10
+		console.log @yAcceleration
+		@y = @y - @yAcceleration if ( @y - @yAcceleration ) > 0 and ( @y - @yAcceleration ) + @height < @level.ground
+		
+	draw: ()->
+		if @upPressed
+			sprite = @spriterocket
+		else
+			sprite = @sprite
+		@level.context.drawImage(sprite,@x,@y)	
 		
 	incrementKillStreak: ()->
 		@killStreak++

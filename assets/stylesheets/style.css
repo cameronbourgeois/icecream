@@ -20,6 +20,9 @@ canvas {
   left: 120px;
   top: 300px; }
 
+body {
+  background-color: #67686a; }
+
 progress {
   display: block;
   margin: auto;

@@ -3,6 +3,7 @@ class Sprite
 	@y
 	@destroyed = false
 	constructor: (handle,level)->
+		@handle = handle
 		@level = level
 		@sprite = window.assets.getAsset(window.asset_map[handle])
 		@width = @sprite.width
