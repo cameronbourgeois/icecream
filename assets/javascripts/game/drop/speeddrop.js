@@ -14,6 +14,7 @@ SpeedDrop = (function(_super) {
 
   SpeedDrop.prototype.apply = function() {
     var _this = this;
+    SpeedDrop.__super__.apply.call(this);
     this.level.speedModifier = this.speedModifier * this.level.speedModifier;
     return window.setTimeout(function() {
       return _this.level.speedModifier = _this.level.speedModifier / _this.speedModifier;

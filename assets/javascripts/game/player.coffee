@@ -38,7 +38,6 @@ class Player extends Sprite
 			@yAcceleration++
 		else 
 			@yAcceleration-- if @yAcceleration > -10
-		console.log @yAcceleration
 		@y = @y - @yAcceleration if ( @y - @yAcceleration ) > 0 and ( @y - @yAcceleration ) + @height < @level.ground
 		
 	draw: ()->

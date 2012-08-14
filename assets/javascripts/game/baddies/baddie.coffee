@@ -20,12 +20,5 @@ class Baddie extends Sprite
 			@y = @y + ySpeed
 		else
 	 		@level.player.damageHealth()
+	 		@level.effects.push new Explosion(@level,@x,@y)
 	 		@destroy()
-	 		
-###
-Remember this for opacity
-	draw: ()->
-		#@game.context.globalAlpha = 0.5
-		@game.context.drawImage(@sprite,@x,@y)
-		#@game.context.globalAlpha = 1
-###

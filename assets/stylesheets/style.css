@@ -55,7 +55,25 @@ progress {
     transition: opacity 0.4s ease-in; }
   .wrapper #messages {
     height: 120px;
-    top: 250px; }
+    top: 250px;
+    background-color: #67686a; }
+    .wrapper #messages #level_header {
+      width: 333px;
+      height: 70px;
+      position: relative;
+      top: 24px;
+      margin: auto;
+      display: block; }
+    .wrapper #messages #level_header.level_1 {
+      background: url("/assets/images/game/level01.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_2 {
+      background: url("/assets/images/game/level02.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_3 {
+      background: url("/assets/images/game/level03.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_4 {
+      background: url("/assets/images/game/level04.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_5 {
+      background: url("/assets/images/game/level05.png") no-repeat 0 0 transparent; }
   .wrapper #menu {
     top: 250px;
     background-color: #67686a;
@@ -77,29 +95,38 @@ progress {
       display: block;
       background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent; }
   .wrapper #hud {
+    position: absolute;
     height: 27px;
     top: 581px; }
-    .wrapper #hud #points {
+    .wrapper #hud .points_wrapper {
+      height: inherit;
       float: right;
-      margin: 6px; }
-    .wrapper #hud #health {
-      background: url("/assets/images/game/life.png") no-repeat 0 0;
-      display: block;
+      width: 100px;
+      background-color: #e0ca75; }
+      .wrapper #hud .points_wrapper #points {
+        margin: 6px;
+        float: right; }
+    .wrapper #hud .health_wrapper {
+      height: inherit;
       float: left;
-      margin: 7px;
-      width: 97px;
-      height: 12px; }
-    .wrapper #hud #health.health_0 {
-      background-position: 0 0; }
-    .wrapper #hud #health.health_1 {
-      background-position: 0 -12px; }
-    .wrapper #hud #health.health_2 {
-      background-position: 0 -24px; }
-    .wrapper #hud #health.health_3 {
-      background-position: 0 -36px; }
-    .wrapper #hud #health.health_4 {
-      background-position: 0 -48px; }
-    .wrapper #hud #health.health_5 {
-      background-position: 0 -60px; }
-    .wrapper #hud #health.health_6 {
-      background-position: 0 -72px; }
+      background-color: #add3c6; }
+      .wrapper #hud .health_wrapper #health {
+        background: url("/assets/images/game/life.png") no-repeat 0 0;
+        width: 97px;
+        height: 12px;
+        display: block;
+        margin: 8px; }
+      .wrapper #hud .health_wrapper #health.health_0 {
+        background-position: 0 0; }
+      .wrapper #hud .health_wrapper #health.health_1 {
+        background-position: 0 -12px; }
+      .wrapper #hud .health_wrapper #health.health_2 {
+        background-position: 0 -24px; }
+      .wrapper #hud .health_wrapper #health.health_3 {
+        background-position: 0 -36px; }
+      .wrapper #hud .health_wrapper #health.health_4 {
+        background-position: 0 -48px; }
+      .wrapper #hud .health_wrapper #health.health_5 {
+        background-position: 0 -60px; }
+      .wrapper #hud .health_wrapper #health.health_6 {
+        background-position: 0 -72px; }

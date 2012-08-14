@@ -12,6 +12,7 @@ HealthDrop = (function(_super) {
   }
 
   HealthDrop.prototype.apply = function() {
+    HealthDrop.__super__.apply.call(this);
     return this.level.player.replenishHealth();
   };
 

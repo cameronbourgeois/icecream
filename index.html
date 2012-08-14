@@ -18,14 +18,22 @@
 	
 	<div class="wrapper">
 		<div id="messages" class="interface hidden">
+			<div id="level_header" class="level_1"></div>
 		</div>
 		<div id="menu" class="interface hidden">
 			<div id="logo"></div>
 			<a id="start_game" href="javascript:void(0)" title="Start Game">Start Game</a>
 		</div>
 		<div id="hud" class="interface hidden">
-			<div id="health" class="health_0"></div>
-			<div id="points">0</div>
+			<div class="health_wrapper">
+				<div id="health" class="health_0"></div>
+			</div>
+			<div class="bonus_wrapper">
+
+			</div>
+			<div class="points_wrapper">
+				<div id="points">0</div>
+			</div>
 		</div>
 	</div>
 	
@@ -39,6 +47,9 @@
 	<script type="text/javascript" src="/assets/javascripts/game/level/level.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/level/levelone.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/level/leveltwo.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/level/levelthree.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/level/levelfour.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/level/levelfive.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/sprite.js"></script>
 	
@@ -47,6 +58,12 @@
 	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananapopbaddie.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/baddies/pistachioconebaddie.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/baddies/pistachiopopbaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/strawberryconebaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/strawberrypopbaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/chocolateconebaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/chocolatepopbaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/licoriceconebaddie.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/game/baddies/licoricepopbaddie.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
 	
@@ -54,7 +71,7 @@
 	<script type="text/javascript" src="/assets/javascripts/game/drop/healthdrop.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/drop/speeddrop.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/drop/slowdrop.js"></script>
-	
+	<script type="text/javascript" src="/assets/javascripts/game/drop/poisondrop.js"></script>
 	
 	<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
 	<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
@@ -68,17 +85,29 @@
 			'bananaconebaddie': '/assets/images/game/banana02.png',
 			'pistachiopopbaddie': '/assets/images/game/pistachio01.png',
 			'pistachioconebaddie': '/assets/images/game/pistachio02.png',
+			'strawberrypopbaddie': '/assets/images/game/strawberry01.png',
+			'strawberryconebaddie': '/assets/images/game/strawberry02.png',
+			'chocolatepopbaddie': '/assets/images/game/chocolate01.png',
+			'chocolateconebaddie': '/assets/images/game/chocolate02.png',
+			'licoricepopbaddie': '/assets/images/game/licorice01.png',
+			'licoriceconebaddie': '/assets/images/game/licorice02.png',
 			
 			'explosion': '/assets/images/game/explosion.png',
 			
 			'background': '/assets/images/game/bg-sky.jpg',
 			
+			'btn-start': '/assets/images/game/bt-start.png',
+			
 			'levelone-bg': '/assets/images/game/bg-sky.jpg',
 			'levelone': '/assets/images/game/level01.png',
-			'leveltwo-bg': '/assets/images/game/bg-sky.jpg',
+			'leveltwo-bg': '/assets/images/game/bg-desert-lv2.jpg',
 			'leveltwo': '/assets/images/game/level02.png',
-			'levelthree-bg': '/assets/images/game/bg-sky.jpg',
+			'levelthree-bg': '/assets/images/game/bg-japan-lv3.jpg',
 			'levelthree': '/assets/images/game/level03.png',
+			'levelfour-bg': '/assets/images/game/bg-undersea-lv4.jpg',
+			'levelfour': '/assets/images/game/level04.png',
+			'levelfive-bg': '/assets/images/game/bg-space-lv5.jpg',
+			'levelfive': '/assets/images/game/level05.png',
 			
 			'player2': '/assets/images/game/player.png',
 			'player2-rocket': '/assets/images/game/player-rocket.png',
@@ -88,8 +117,13 @@
 			'bullet': '/assets/images/game/bullet-red.png',
 			
 			'healthdrop': '/assets/images/game/bonus-life.png',
+			'healthdrop-ghost': '/assets/images/game/cloud-bonus-life.png',
 			'speeddrop': '/assets/images/game/bonus-speed.png',
-			'slowdrop': '/assets/images/game/bonus-slow.png'
+			'speeddrop-ghost': '/assets/images/game/cloud-bonus-speed.png',
+			'slowdrop': '/assets/images/game/bonus-slow.png',
+			'slowdrop-ghost': '/assets/images/game/cloud-bonus-slow.png',
+			'poisondrop': '/assets/images/game/bonus-poison.png',
+			'poisondrop-ghost': '/assets/images/game/cloud-bonus-poison.png'
 			
 		};
 		

@@ -29,6 +29,7 @@ Baddie = (function(_super) {
       return this.y = this.y + ySpeed;
     } else {
       this.level.player.damageHealth();
+      this.level.effects.push(new Explosion(this.level, this.x, this.y));
       return this.destroy();
     }
   };
@@ -36,12 +37,3 @@ Baddie = (function(_super) {
   return Baddie;
 
 })(Sprite);
-
-/*
-Remember this for opacity
-	draw: ()->
-		#@game.context.globalAlpha = 0.5
-		@game.context.drawImage(@sprite,@x,@y)
-		#@game.context.globalAlpha = 1
-*/
-

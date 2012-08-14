@@ -13,7 +13,7 @@ class Explosion extends Sprite
 	update: ()->
 		@opacity = @opacity - 0.05
 		@destroy() if @opacity <= 0
-		if Math.random() > 0.5 then @sizeMod = 1 else @sizeMod = -2 
+		if Math.random() > 0.5 then @sizeMod = 1 else @sizeMod = -1 
 		if @level.speedModifier isnt 1
 			ySpeed =  @yAcceleration * @level.speedModifier
 		else
