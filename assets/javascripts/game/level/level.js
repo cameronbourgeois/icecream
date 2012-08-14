@@ -62,48 +62,58 @@ Level = (function() {
     _ref = this.baddies;
     for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
       baddie = _ref[i];
-      baddie.update();
-      _ref1 = this.bullets;
-      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-        bullet = _ref1[_j];
-        if (this.haveCollided(bullet, baddie)) {
-          this.player.incrementKillStreak();
-          this.points = Math.floor(this.points + (baddie.points * this.player.killStreak));
-          bullet.destroy();
-          baddie.destroy();
+      if (baddie) {
+        baddie.update();
+        _ref1 = this.bullets;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          bullet = _ref1[_j];
+          if (this.haveCollided(bullet, baddie)) {
+            this.player.incrementKillStreak();
+            this.points = Math.floor(this.points + (baddie.points * this.player.killStreak));
+            bullet.destroy();
+            baddie.destroy();
+          }
         }
-      }
-      if (baddie.destroyed) {
-        this.baddies.splice(i, 1);
+        if (baddie.destroyed) {
+          this.baddies.splice(i, 1);
+        }
       }
     }
     _ref2 = this.bullets;
     for (i = _k = 0, _len2 = _ref2.length; _k < _len2; i = ++_k) {
       bullet = _ref2[i];
-      bullet.update();
-      if (bullet.destroyed) {
-        this.bullets.splice(i, 1);
+      if (bullet) {
+        bullet.update();
+        if (bullet.destroyed) {
+          this.bullets.splice(i, 1);
+        }
       }
     }
     _ref3 = this.effects;
     for (i = _l = 0, _len3 = _ref3.length; _l < _len3; i = ++_l) {
       effect = _ref3[i];
-      effect.update();
-      if (effect.destroyed) {
-        this.effects.splice(i, 1);
+      if (effect) {
+        effect.update();
+        if (effect.destroyed) {
+          this.effects.splice(i, 1);
+        }
       }
     }
     _ref4 = this.drops;
     _results = [];
     for (i = _m = 0, _len4 = _ref4.length; _m < _len4; i = ++_m) {
       drop = _ref4[i];
-      if (this.haveCollided(drop, this.player)) {
-        drop.apply();
-        drop.destroy();
-      }
-      drop.update();
-      if (drop.destroyed) {
-        _results.push(this.drops.splice(i, 1));
+      if (drop) {
+        if (this.haveCollided(drop, this.player)) {
+          drop.apply();
+          drop.destroy();
+        }
+        drop.update();
+        if (drop.destroyed) {
+          _results.push(this.drops.splice(i, 1));
+        } else {
+          _results.push(void 0);
+        }
       } else {
         _results.push(void 0);
       }

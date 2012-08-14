@@ -44,30 +44,34 @@ class Level
 		@player.update() if @player
 		
 		for baddie, i in @baddies
-			baddie.update()
-			# Check for collisions and create explosions
-			for bullet in @bullets
-				if @haveCollided(bullet,baddie)
-					@player.incrementKillStreak()
-					@points = Math.floor( @points + ( baddie.points * @player.killStreak ) )
-					bullet.destroy()
-					baddie.destroy()
-			@baddies.splice(i,1) if baddie.destroyed
+			if baddie
+				baddie.update()
+				# Check for collisions and create explosions
+				for bullet in @bullets
+					if @haveCollided(bullet,baddie)
+						@player.incrementKillStreak()
+						@points = Math.floor( @points + ( baddie.points * @player.killStreak ) )
+						bullet.destroy()
+						baddie.destroy()
+				@baddies.splice(i,1) if baddie.destroyed
 			
 		for bullet, i in @bullets
-			bullet.update()
-			@bullets.splice(i,1) if bullet.destroyed
+			if bullet
+				bullet.update()
+				@bullets.splice(i,1) if bullet.destroyed					
 			
 		for effect, i in @effects
-			effect.update()
-			@effects.splice(i,1) if effect.destroyed
+			if effect
+				effect.update()
+				@effects.splice(i,1) if effect.destroyed
 			
 		for drop, i in @drops
-			if @haveCollided(drop,@player)
-				drop.apply()
-				drop.destroy()
-			drop.update()
-			@drops.splice(i,1) if drop.destroyed
+			if drop
+				if @haveCollided(drop,@player)
+					drop.apply()
+					drop.destroy()
+				drop.update()
+				@drops.splice(i,1) if drop.destroyed
 			
 	haveCollided: (sprite1,sprite2)->
 		return ( sprite1.x < sprite2.x + sprite2.width ) and ( sprite1.x + sprite1.width > sprite2.x ) and ( sprite1.y < sprite2.y + sprite2.height ) and ( sprite1.y + sprite1.height > sprite2.y )
