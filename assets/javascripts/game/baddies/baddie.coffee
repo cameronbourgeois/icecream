@@ -22,3 +22,7 @@ class Baddie extends Sprite
 	 		@level.player.damageHealth()
 	 		@level.effects.push new Explosion(@level,@x,@y)
 	 		@destroy()
+	 		
+	destroy: ()->
+		super()
+		@level.effects.push new Explosion(@level,@x,@y)

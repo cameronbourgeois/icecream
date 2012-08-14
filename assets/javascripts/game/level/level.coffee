@@ -52,7 +52,6 @@ class Level
 					@points = Math.floor( @points + ( baddie.points * @player.killStreak ) )
 					bullet.destroy()
 					baddie.destroy()
-					@effects.push(new Explosion(@,baddie.x,baddie.y))
 			@baddies.splice(i,1) if baddie.destroyed
 			
 		for bullet, i in @bullets

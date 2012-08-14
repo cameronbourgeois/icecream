@@ -7,7 +7,7 @@ class LevelOne extends Level
 		@addBaddie()
 		
 	checkPassed: ()->
-		@points > 100
+		@points > 10000
 	
 	addBaddie: ()->
 		if Math.random() > 0.5
@@ -16,7 +16,11 @@ class LevelOne extends Level
 			@baddies.push(new BananaPopBaddie(@))
 			
 	addDrop: ()->
+		@drops.push new BombDrop(@)
+		
+		###
 		if Math.random() > 0.7
 			@drops.push new HealthDrop(@)
 		else
 			@drops.push new SlowDrop(@)
+			###

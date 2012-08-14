@@ -16,7 +16,7 @@ LevelOne = (function(_super) {
   }
 
   LevelOne.prototype.checkPassed = function() {
-    return this.points > 100;
+    return this.points > 10000;
   };
 
   LevelOne.prototype.addBaddie = function() {
@@ -28,11 +28,14 @@ LevelOne = (function(_super) {
   };
 
   LevelOne.prototype.addDrop = function() {
-    if (Math.random() > 0.7) {
-      return this.drops.push(new HealthDrop(this));
-    } else {
-      return this.drops.push(new SlowDrop(this));
-    }
+    return this.drops.push(new BombDrop(this));
+    /*
+    		if Math.random() > 0.7
+    			@drops.push new HealthDrop(@)
+    		else
+    			@drops.push new SlowDrop(@)
+    */
+
   };
 
   return LevelOne;

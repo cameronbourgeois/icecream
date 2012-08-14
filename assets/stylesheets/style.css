@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "DamnNoisyKidsRegular";
+  src: url("/assets/fonts/dnk-webfont.eot");
+  src: url("/assets/fonts/dnk-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/dnk-webfont.woff") format("woff"), url("/assets/fonts/dnk-webfont.ttf") format("truetype"), url("/assets/fonts/dnk-webfont.svg#DamnNoisyKidsRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 canvas {
   display: block;
   margin: 0 auto;
@@ -21,6 +28,7 @@ canvas {
   top: 300px; }
 
 body {
+  font-family: "DamnNoisyKidsRegular";
   background-color: #67686a; }
 
 progress {

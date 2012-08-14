@@ -71,7 +71,6 @@ Level = (function() {
           this.points = Math.floor(this.points + (baddie.points * this.player.killStreak));
           bullet.destroy();
           baddie.destroy();
-          this.effects.push(new Explosion(this, baddie.x, baddie.y));
         }
       }
       if (baddie.destroyed) {
