@@ -16,7 +16,7 @@ LevelOne = (function(_super) {
   }
 
   LevelOne.prototype.checkPassed = function() {
-    return this.points > 10000;
+    return this.points > 100;
   };
 
   LevelOne.prototype.addBaddie = function() {

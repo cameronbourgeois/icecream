@@ -66,7 +66,7 @@ progress {
     top: 250px;
     background-color: #67686a; }
     .wrapper #messages #level_header {
-      width: 333px;
+      width: 332px;
       height: 70px;
       position: relative;
       top: 24px;
@@ -89,14 +89,14 @@ progress {
     .wrapper #menu #logo {
       margin: inherit;
       height: 69px;
-      width: 141px;
+      width: 140px;
       position: relative;
       top: 16px;
       background: url("/assets/images/game/logo-bgblack.png") no-repeat 0 0 transparent; }
     .wrapper #menu #start_game {
       margin: inherit;
       height: 75px;
-      width: 141px;
+      width: 140px;
       text-indent: -9999px;
       position: relative;
       top: 27px;
@@ -106,18 +106,20 @@ progress {
     position: absolute;
     height: 27px;
     top: 581px; }
+    .wrapper #hud .gunheat_wrapper {
+      height: inherit;
+      float: right; }
     .wrapper #hud .points_wrapper {
       height: inherit;
       float: right;
-      width: 100px;
-      background-color: #e0ca75; }
+      width: 100px; }
       .wrapper #hud .points_wrapper #points {
+        color: white;
         margin: 6px;
         float: right; }
     .wrapper #hud .health_wrapper {
       height: inherit;
-      float: left;
-      background-color: #add3c6; }
+      float: left; }
       .wrapper #hud .health_wrapper #health {
         background: url("/assets/images/game/life.png") no-repeat 0 0;
         width: 97px;

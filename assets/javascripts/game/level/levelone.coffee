@@ -7,7 +7,7 @@ class LevelOne extends Level
 		@addBaddie()
 		
 	checkPassed: ()->
-		@points > 10000
+		@points > 100
 	
 	addBaddie: ()->
 		if Math.random() > 0.5
