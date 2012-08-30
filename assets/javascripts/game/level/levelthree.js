@@ -9,14 +9,14 @@ LevelThree = (function(_super) {
 
   function LevelThree(game) {
     LevelThree.__super__.constructor.call(this, 'levelthree', game);
-    this.baseSpeed = 4;
-    this.dropLikelyhood = 0.998;
-    this.baddieLikelyhood = 0.96;
+    this.baseSpeed = 5;
+    this.dropLikelyhood = 0.997;
+    this.baddieLikelyhood = 0.95;
     this.addBaddie();
   }
 
   LevelThree.prototype.checkPassed = function() {
-    return this.points > 100;
+    return this.points > 2500;
   };
 
   LevelThree.prototype.addBaddie = function() {
@@ -28,7 +28,11 @@ LevelThree = (function(_super) {
   };
 
   LevelThree.prototype.addDrop = function() {
-    return this.drops.push(new PoisonDrop(this));
+    if (Math.random() < 0.7) {
+      return this.drops.push(new HealthDrop(this));
+    } else {
+      return this.drops.push(new BombDrop(this));
+    }
   };
 
   return LevelThree;

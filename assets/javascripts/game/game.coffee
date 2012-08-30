@@ -2,7 +2,7 @@ class Game
 	constructor: ()->
 		@fps = 60
 		@levelNum = 0
-		
+				
 		@canvas = document.getElementById('battlefield')
 		@context = @canvas.getContext('2d')
 		
@@ -13,7 +13,10 @@ class Game
 		$('#start_game').on 'click', @startGame
 
 	reset: ()->
-		@levelNum = 0
+		if window.getParameterByName('level')!=""
+			@levelNum = window.getParameterByName('level') - 1
+		else 
+			@levelNum = 0
 		delete @level
 		@drawBG()
 		@showMenu()

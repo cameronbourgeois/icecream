@@ -1,13 +1,13 @@
 class LevelThree extends Level
 	constructor: (game)->
 		super('levelthree',game)
-		@baseSpeed = 4
-		@dropLikelyhood = 0.998
-		@baddieLikelyhood = 0.96
+		@baseSpeed = 5
+		@dropLikelyhood = 0.997
+		@baddieLikelyhood = 0.95
 		@addBaddie()
 
 	checkPassed: ()->
-		@points > 100
+		@points > 2500
 
 	addBaddie: ()->
 		if Math.random() > 0.5
@@ -16,4 +16,7 @@ class LevelThree extends Level
 			@baddies.push(new StrawberryPopBaddie(@))
 
 	addDrop: ()->
-		@drops.push new PoisonDrop(@)
+		if Math.random() < 0.7
+			@drops.push new HealthDrop(@)
+		else
+			@drops.push new BombDrop(@)

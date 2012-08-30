@@ -9,14 +9,14 @@ LevelFour = (function(_super) {
 
   function LevelFour(game) {
     LevelFour.__super__.constructor.call(this, 'levelfour', game);
-    this.baseSpeed = 4;
-    this.dropLikelyhood = 0.998;
+    this.baseSpeed = 6;
+    this.dropLikelyhood = 0.993;
     this.baddieLikelyhood = 0.96;
     this.addBaddie();
   }
 
   LevelFour.prototype.checkPassed = function() {
-    return this.points > 100;
+    return this.points > 5000;
   };
 
   LevelFour.prototype.addBaddie = function() {
@@ -28,7 +28,13 @@ LevelFour = (function(_super) {
   };
 
   LevelFour.prototype.addDrop = function() {
-    return this.drops.push(new PoisonDrop(this));
+    if (Math.random() < 0.7) {
+      return this.drops.push(new HealthDrop(this));
+    } else if (Math.random() > 0.5) {
+      return this.drops.push(new SlowDrop(this));
+    } else {
+      return this.drops.push(new BombDrop(this));
+    }
   };
 
   return LevelFour;

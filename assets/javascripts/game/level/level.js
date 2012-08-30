@@ -44,6 +44,7 @@ Level = (function() {
     if (this.checkPassed()) {
       this.over();
     }
+    this.update();
     this.updateAll();
     this.drawAll();
     if (Math.random() > this.dropLikelyhood) {
@@ -53,6 +54,8 @@ Level = (function() {
       return this.addBaddie();
     }
   };
+
+  Level.prototype.update = function() {};
 
   Level.prototype.updateAll = function() {
     var baddie, bullet, drop, effect, i, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4, _results;

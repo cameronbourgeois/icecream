@@ -16,7 +16,11 @@ Game = (function() {
   }
 
   Game.prototype.reset = function() {
-    this.levelNum = 0;
+    if (window.getParameterByName('level') !== "") {
+      this.levelNum = window.getParameterByName('level') - 1;
+    } else {
+      this.levelNum = 0;
+    }
     delete this.level;
     this.drawBG();
     return this.showMenu();

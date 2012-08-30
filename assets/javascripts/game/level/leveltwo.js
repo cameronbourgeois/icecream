@@ -11,12 +11,12 @@ LevelTwo = (function(_super) {
     LevelTwo.__super__.constructor.call(this, 'leveltwo', game);
     this.baseSpeed = 4;
     this.dropLikelyhood = 0.998;
-    this.baddieLikelyhood = 0.96;
+    this.baddieLikelyhood = 0.97;
     this.addBaddie();
   }
 
   LevelTwo.prototype.checkPassed = function() {
-    return this.points > 100;
+    return this.points > 2500;
   };
 
   LevelTwo.prototype.addBaddie = function() {
@@ -28,7 +28,11 @@ LevelTwo = (function(_super) {
   };
 
   LevelTwo.prototype.addDrop = function() {
-    return this.drops.push(new PoisonDrop(this));
+    if (Math.random() < 0.7) {
+      return this.drops.push(new HealthDrop(this));
+    } else {
+      return this.drops.push(new PoisonDrop(this));
+    }
   };
 
   return LevelTwo;

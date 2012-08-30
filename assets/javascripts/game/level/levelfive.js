@@ -9,14 +9,14 @@ LevelFive = (function(_super) {
 
   function LevelFive(game) {
     LevelFive.__super__.constructor.call(this, 'levelfive', game);
-    this.baseSpeed = 4;
-    this.dropLikelyhood = 0.998;
-    this.baddieLikelyhood = 0.96;
+    this.baseSpeed = 7;
+    this.dropLikelyhood = 0.993;
+    this.baddieLikelyhood = 0.97;
     this.addBaddie();
   }
 
   LevelFive.prototype.checkPassed = function() {
-    return this.points > 100;
+    return this.points > 5000;
   };
 
   LevelFive.prototype.over = function() {
@@ -33,7 +33,13 @@ LevelFive = (function(_super) {
   };
 
   LevelFive.prototype.addDrop = function() {
-    return this.drops.push(new PoisonDrop(this));
+    if (Math.random() < 0.7) {
+      return this.drops.push(new HealthDrop(this));
+    } else if (Math.random() > 0.5) {
+      return this.drops.push(new SlowDrop(this));
+    } else {
+      return this.drops.push(new BombDrop(this));
+    }
   };
 
   return LevelFive;

@@ -35,10 +35,14 @@ class Level
 		
 	loopFunc: ()=>
 		@over() if @checkPassed()
+		@update()
 		@updateAll()
 		@drawAll()
 		@addDrop() if Math.random() > @dropLikelyhood
 		@addBaddie() if Math.random() > @baddieLikelyhood
+		
+	update: ()->
+		# Define me in your level!
 		
 	updateAll: ()->
 		@player.update() if @player
