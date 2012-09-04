@@ -10,7 +10,8 @@ Game = (function() {
     this.levelNum = 0;
     this.canvas = document.getElementById('battlefield');
     this.context = this.canvas.getContext('2d');
-    this.bg = window.assets.getAsset(window.asset_map['background']);
+    this.bg = window.getImage('background');
+    console.log(this.bg);
     this.reset();
     $('#start_game').on('click', this.startGame);
   }

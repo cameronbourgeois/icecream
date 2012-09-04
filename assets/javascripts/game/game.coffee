@@ -6,7 +6,14 @@ class Game
 		@canvas = document.getElementById('battlefield')
 		@context = @canvas.getContext('2d')
 		
-		@bg = window.assets.getAsset(window.asset_map['background'])		
+		
+		
+		@bg = window.getImage('background');
+		
+		
+		console.log @bg
+		
+		#@bg = window.assets.getAsset(window.asset_map['background'])	
 
 		@reset()
 

@@ -134,50 +134,44 @@
 			{id:'bombdrop',src:'/assets/images/game/bonus-pchhbomb.png'},
 			{id:'bombdrop-ghost',src:'/assets/images/game/cloud-bonus-pchhbomb.png'}
 		];
+		
+		
+		$(function(){			
 			
-		
-		
-		var handleFileLoad = function(event) {
-		};
-		
-		var handleOverallProgress = function(event) {
-			$('#assetprogress').val(event.loaded);
-		};
-		
-		var handleFileProgress = function(event) {
-		};
-
-		var handleFileError = function(event) {
-		};
-		
-		preload = new createjs.PreloadJS();
-		preload.onFileLoad = handleFileLoad;
-		preload.onProgress = handleOverallProgress;
-		preload.onFileProgress = handleFileProgress;
-		preload.onError = handleFileError;
-		preload.setMaxConnections(5);
-		
-		preload.loadManifest(window.manifest);
+			var handleFileLoad = function(event) {
+			};
 			
-		
-		
-		$(function(){
+			var handleOverallProgress = function(event) {
+				if (event.loaded == 1) {
+					window.game = new Game();
+				}
+				else {
+					$('#assetprogress').val(event.loaded);	
+				}
+			};
 			
-			/**
-			var assets = window.assets = new AssetManager();
+			var handleFileProgress = function(event) {
+			};
 			
-			assets.progressBarID = 'assetprogress';
+			var handleFileError = function(event) {
+			};
 			
-			$.each(window.asset_map,function(name,uri){
-				assets.queueDownload(uri);
-			});
+			preload = new createjs.PreloadJS();
+			preload.onFileLoad = handleFileLoad;
+			preload.onProgress = handleOverallProgress;
+			preload.onFileProgress = handleFileProgress;
+			preload.onError = handleFileError;
+			preload.setMaxConnections(5);
 			
-			assets.downloadAll(function() {
-				window.game = new Game();
-			});
-			**/
+			preload.loadManifest(window.manifest);
 			
 		})
+		
+		window.getImage = function(handle) {
+			var img = new Image();
+			img.src = window.manifest['handle'];
+			return img;
+		}
 		
 		window.getParameterByName = function(name) {
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
