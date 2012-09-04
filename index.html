@@ -12,7 +12,7 @@
 
 <body>
 	
-	<progress id="assetprogress" value="0" max="100"></progress>
+	<progress id="assetprogress" value="0" max="1"></progress>
 	
 	<canvas id="battlefield" width="400" height="600">Get a better browser.</canvas>
 	
@@ -38,106 +38,136 @@
 	</div>
 	
 	<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/vendor/underscore.js"></script>
 	
-	<script type="text/javascript" src="/assets/javascripts/vendor/assetmanager.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/game.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/level/level.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/level/levelone.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/level/leveltwo.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/level/levelthree.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/level/levelfour.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/level/levelfive.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/sprite.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/baddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananaconebaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/bananapopbaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/pistachioconebaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/pistachiopopbaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/strawberryconebaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/strawberrypopbaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/chocolateconebaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/chocolatepopbaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/licoriceconebaddie.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/baddies/licoricepopbaddie.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/player.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/drop/drop.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/drop/healthdrop.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/drop/speeddrop.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/drop/slowdrop.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/drop/poisondrop.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/drop/bombdrop.js"></script>
-	
-	<script type="text/javascript" src="/assets/javascripts/game/bullet.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/game/explosion.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/AbstractLoader.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/PreloadJS.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/TagLoader.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/XHRLoader.js"></script>
 	
 	<script type="text/javascript">
 		
-		// Array of assets. The key is the 'handle' used by each object.
-		window.asset_map = {
+		// Using PreloadJS
+		
+		window.manifest = [
+			// JS
+			'/assets/javascripts/vendor/underscore.js',
 			
-			'bananapopbaddie': '/assets/images/game/banana01.png',
-			'bananaconebaddie': '/assets/images/game/banana02.png',
-			'pistachiopopbaddie': '/assets/images/game/pistachio01.png',
-			'pistachioconebaddie': '/assets/images/game/pistachio02.png',
-			'strawberrypopbaddie': '/assets/images/game/strawberry01.png',
-			'strawberryconebaddie': '/assets/images/game/strawberry02.png',
-			'chocolatepopbaddie': '/assets/images/game/chocolate01.png',
-			'chocolateconebaddie': '/assets/images/game/chocolate02.png',
-			'licoricepopbaddie': '/assets/images/game/licorice01.png',
-			'licoriceconebaddie': '/assets/images/game/licorice02.png',
+			'/assets/javascripts/game/game.js',
 			
-			'explosion': '/assets/images/game/explosion.png',
+			'/assets/javascripts/game/level/level.js',
+			'/assets/javascripts/game/level/levelone.js',
+			'/assets/javascripts/game/level/leveltwo.js',
+			'/assets/javascripts/game/level/levelthree.js',
+			'/assets/javascripts/game/level/levelfour.js',
+			'/assets/javascripts/game/level/levelfive.js',
 			
-			'background': '/assets/images/game/bg-sky.jpg',
+			'/assets/javascripts/game/sprite.js',
 			
-			'btn-start': '/assets/images/game/bt-start.png',
+			'/assets/javascripts/game/baddies/baddie.js',
+			'/assets/javascripts/game/baddies/bananaconebaddie.js',
+			'/assets/javascripts/game/baddies/bananapopbaddie.js',
+			'/assets/javascripts/game/baddies/pistachioconebaddie.js',
+			'/assets/javascripts/game/baddies/pistachiopopbaddie.js',
+			'/assets/javascripts/game/baddies/strawberryconebaddie.js',
+			'/assets/javascripts/game/baddies/strawberrypopbaddie.js',
+			'/assets/javascripts/game/baddies/chocolateconebaddie.js',
+			'/assets/javascripts/game/baddies/chocolatepopbaddie.js',
+			'/assets/javascripts/game/baddies/licoriceconebaddie.js',
+			'/assets/javascripts/game/baddies/licoricepopbaddie.js',
 			
-			'levelone-bg': '/assets/images/game/bg-sky.jpg',
-			'levelone': '/assets/images/game/level01.png',
-			'leveltwo-bg': '/assets/images/game/bg-desert-lv2.jpg',
-			'leveltwo': '/assets/images/game/level02.png',
-			'levelthree-bg': '/assets/images/game/bg-japan-lv3.jpg',
-			'levelthree': '/assets/images/game/level03.png',
-			'levelfour-bg': '/assets/images/game/bg-undersea-lv4.jpg',
-			'levelfour': '/assets/images/game/level04.png',
-			'levelfive-bg': '/assets/images/game/bg-space-lv5.jpg',
-			'levelfive': '/assets/images/game/level05.png',
+			'/assets/javascripts/game/player.js',
 			
-			'player2': '/assets/images/game/player.png',
-			'player2-rocket': '/assets/images/game/player-rocket.png',
-			'player': '/assets/images/game/player02.png',
-			'player-rocket': '/assets/images/game/player02-rocket.png',
+			'/assets/javascripts/game/drop/drop.js',
+			'/assets/javascripts/game/drop/healthdrop.js',
+			'/assets/javascripts/game/drop/speeddrop.js',
+			'/assets/javascripts/game/drop/slowdrop.js',
+			'/assets/javascripts/game/drop/poisondrop.js',
+			'/assets/javascripts/game/drop/bombdrop.js',
 			
-			'bullet': '/assets/images/game/bullet-red.png',
+			'/assets/javascripts/game/bullet.js',
+			'/assets/javascripts/game/explosion.js',
+		
+			// Graphics
+			{id:'bananapopbaddie',src:'/assets/images/game/banana01.png'},
+			{id:'bananaconebaddie',src:'/assets/images/game/banana02.png'},
+			{id:'pistachiopopbaddie',src:'/assets/images/game/pistachio01.png'},
+			{id:'pistachioconebaddie',src:'/assets/images/game/pistachio02.png'},
+			{id:'strawberrypopbaddie',src:'/assets/images/game/strawberry01.png'},
+			{id:'strawberryconebaddie',src:'/assets/images/game/strawberry02.png'},
+			{id:'chocolatepopbaddie',src:'/assets/images/game/chocolate01.png'},
+			{id:'chocolateconebaddie',src:'/assets/images/game/chocolate02.png'},
+			{id:'licoricepopbaddie',src:'/assets/images/game/licorice01.png'},
+			{id:'licoriceconebaddie',src:'/assets/images/game/licorice02.png'},
 			
-			'healthdrop': '/assets/images/game/bonus-life.png',
-			'healthdrop-ghost': '/assets/images/game/cloud-bonus-life.png',
-			'speeddrop': '/assets/images/game/bonus-speed.png',
-			'speeddrop-ghost': '/assets/images/game/cloud-bonus-speed.png',
-			'slowdrop': '/assets/images/game/bonus-slow.png',
-			'slowdrop-ghost': '/assets/images/game/cloud-bonus-slow.png',
-			'poisondrop': '/assets/images/game/bonus-poison.png',
-			'poisondrop-ghost': '/assets/images/game/cloud-bonus-poison.png',
-			'bombdrop': '/assets/images/game/bonus-pchhbomb.png',
-			'bombdrop-ghost': '/assets/images/game/cloud-bonus-pchhbomb.png'
+			{id:'explosion',src:'/assets/images/game/explosion.png'},
 			
+			{id:'background',src:'/assets/images/game/bg-sky.jpg'},
+			
+			{id:'btn-start',src:'/assets/images/game/bt-start.png'},
+			
+			{id:'levelone-bg',src:'/assets/images/game/bg-sky.jpg'},
+			{id:'levelone',src:'/assets/images/game/level01.png'},
+			{id:'leveltwo-bg',src:'/assets/images/game/bg-desert-lv2.jpg'},
+			{id:'leveltwo',src:'/assets/images/game/level02.png'},
+			{id:'levelthree-bg',src:'/assets/images/game/bg-japan-lv3.jpg'},
+			{id:'levelthree',src:'/assets/images/game/level03.png'},
+			{id:'levelfour-bg',src:'/assets/images/game/bg-undersea-lv4.jpg'},
+			{id:'levelfour',src:'/assets/images/game/level04.png'},
+			{id:'levelfive-bg',src:'/assets/images/game/bg-space-lv5.jpg'},
+			{id:'levelfive',src:'/assets/images/game/level05.png'},
+			
+			{id:'player2',src:'/assets/images/game/player.png'},
+			{id:'player2-rocket',src:'/assets/images/game/player-rocket.png'},
+			{id:'player',src:'/assets/images/game/player02.png'},
+			{id:'player-rocket',src:'/assets/images/game/player02-rocket.png'},
+			
+			{id:'bullet',src:'/assets/images/game/bullet-red.png'},
+			
+			{id:'healthdrop',src:'/assets/images/game/bonus-life.png'},
+			{id:'healthdrop-ghost',src:'/assets/images/game/cloud-bonus-life.png'},
+			{id:'speeddrop',src:'/assets/images/game/bonus-speed.png'},
+			{id:'speeddrop-ghost',src:'/assets/images/game/cloud-bonus-speed.png'},
+			{id:'slowdrop',src:'/assets/images/game/bonus-slow.png'},
+			{id:'slowdrop-ghost',src:'/assets/images/game/cloud-bonus-slow.png'},
+			{id:'poisondrop',src:'/assets/images/game/bonus-poison.png'},
+			{id:'poisondrop-ghost',src:'/assets/images/game/cloud-bonus-poison.png'},
+			{id:'bombdrop',src:'/assets/images/game/bonus-pchhbomb.png'},
+			{id:'bombdrop-ghost',src:'/assets/images/game/cloud-bonus-pchhbomb.png'}
+		];
+			
+		
+		
+		var handleFileLoad = function(event) {
 		};
+		
+		var handleOverallProgress = function(event) {
+			$('#assetprogress').val(event.loaded);
+		};
+		
+		var handleFileProgress = function(event) {
+		};
+
+		var handleFileError = function(event) {
+		};
+		
+		preload = new createjs.PreloadJS();
+		preload.onFileLoad = handleFileLoad;
+		preload.onProgress = handleOverallProgress;
+		preload.onFileProgress = handleFileProgress;
+		preload.onError = handleFileError;
+		preload.setMaxConnections(5);
+		
+		preload.loadManifest(window.manifest);
+			
+		
 		
 		$(function(){
 			
-
+			/**
 			var assets = window.assets = new AssetManager();
 			
 			assets.progressBarID = 'assetprogress';
 			
-			// Baddies
 			$.each(window.asset_map,function(name,uri){
 				assets.queueDownload(uri);
 			});
@@ -145,6 +175,7 @@
 			assets.downloadAll(function() {
 				window.game = new Game();
 			});
+			**/
 			
 		})
 		
