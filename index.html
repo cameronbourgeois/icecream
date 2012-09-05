@@ -39,10 +39,10 @@
 	
 	<script type="text/javascript" src="/assets/javascripts/vendor/jquery.js"></script>
 	
-	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/AbstractLoader.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/PreloadJS.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/TagLoader.js"></script>
-	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/src/preloadjs/XHRLoader.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/AbstractLoader.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/PreloadJS.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/TagLoader.js"></script>
+	<script type="text/javascript" src="/assets/javascripts/vendor/preloadjs/XHRLoader.js"></script>
 	
 	<script type="text/javascript">
 		
@@ -137,7 +137,6 @@
 		
 		
 		$(function(){
-			
 			preload = new createjs.PreloadJS();
 			preload.onProgress = function(event) {
 				$('#assetprogress').val(event.loaded);
