@@ -10,15 +10,14 @@ Game = (function() {
     this.levelNum = 0;
     this.canvas = document.getElementById('battlefield');
     this.context = this.canvas.getContext('2d');
-    this.bg = window.getImage('background');
-    console.log(this.bg);
+    this.bg = getImage('background');
     this.reset();
     $('#start_game').on('click', this.startGame);
   }
 
   Game.prototype.reset = function() {
-    if (window.getParameterByName('level') !== "") {
-      this.levelNum = window.getParameterByName('level') - 1;
+    if (getParameterByName('level') !== "") {
+      this.levelNum = getParameterByName('level') - 1;
     } else {
       this.levelNum = 0;
     }

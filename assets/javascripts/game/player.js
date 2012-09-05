@@ -10,7 +10,7 @@ Player = (function(_super) {
   function Player(level) {
     var _this = this;
     Player.__super__.constructor.call(this, 'player', level);
-    this.spriterocket = window.assets.getAsset(window.asset_map[this.handle + '-rocket']);
+    this.spriterocket = window.getImage(this.handle + '-rocket');
     this.health = 6;
     this.updateHealth();
     this.killStreak = 0;

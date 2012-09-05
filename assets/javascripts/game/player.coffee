@@ -2,7 +2,7 @@ class Player extends Sprite
 	constructor: (level)->
 		super('player',level)
 		
-		@spriterocket = window.assets.getAsset(window.asset_map[@handle+'-rocket'])
+		@spriterocket = window.getImage(@handle+'-rocket')
 		
 		@health = 6
 		@updateHealth()

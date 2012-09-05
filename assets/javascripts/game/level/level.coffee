@@ -3,7 +3,7 @@ class Level
 		@game = game
 		@handle = handle
 		@playing = false
-		@bg = window.assets.getAsset(window.asset_map[@handle+'-bg'])
+		@bg = window.getImage(@handle+'-bg')
 		@game.showHUD()
 		@fps = game.fps
 		@speedModifier = 1

@@ -5,7 +5,7 @@ class Sprite
 	constructor: (handle,level)->
 		@handle = handle
 		@level = level
-		@sprite = window.assets.getAsset(window.asset_map[handle])
+		@sprite = window.getImage(handle)
 		@width = @sprite.width
 		@height = @sprite.height
 	draw: ()->

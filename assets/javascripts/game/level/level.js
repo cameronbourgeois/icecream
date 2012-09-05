@@ -9,7 +9,7 @@ Level = (function() {
     this.game = game;
     this.handle = handle;
     this.playing = false;
-    this.bg = window.assets.getAsset(window.asset_map[this.handle + '-bg']);
+    this.bg = window.getImage(this.handle + '-bg');
     this.game.showHUD();
     this.fps = game.fps;
     this.speedModifier = 1;

@@ -6,22 +6,15 @@ class Game
 		@canvas = document.getElementById('battlefield')
 		@context = @canvas.getContext('2d')
 		
-		
-		
-		@bg = window.getImage('background');
-		
-		
-		console.log @bg
-		
-		#@bg = window.assets.getAsset(window.asset_map['background'])	
+		@bg = getImage('background')	
 
 		@reset()
 
 		$('#start_game').on 'click', @startGame
 
 	reset: ()->
-		if window.getParameterByName('level')!=""
-			@levelNum = window.getParameterByName('level') - 1
+		if getParameterByName('level')!=""
+			@levelNum = getParameterByName('level') - 1
 		else 
 			@levelNum = 0
 		delete @level
