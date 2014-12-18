@@ -1,0 +1,142 @@
+@font-face {
+  font-family: "DamnNoisyKidsRegular";
+  src: url("/assets/fonts/dnk-webfont.eot");
+  src: url("/assets/fonts/dnk-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/dnk-webfont.woff") format("woff"), url("/assets/fonts/dnk-webfont.ttf") format("truetype"), url("/assets/fonts/dnk-webfont.svg#DamnNoisyKidsRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+canvas {
+  display: block;
+  margin: 0 auto;
+  width: 400px; }
+
+.message {
+  display: block;
+  position: absolute; }
+
+#status {
+  left: 20px;
+  top: 564px; }
+
+#gameover {
+  display: none;
+  left: 166px;
+  top: 300px; }
+
+#preload_holder {
+  left: 120px;
+  top: 300px; }
+
+body {
+  font-family: "DamnNoisyKidsRegular";
+  background-color: #67686a; }
+
+progress {
+  display: block;
+  margin: auto;
+  position: relative;
+  top: 200px;
+  width: 250px; }
+
+.wrapper {
+  margin: 0 auto;
+  width: 400px; }
+  .wrapper .interface {
+    width: inherit;
+    margin: 0 auto;
+    position: absolute;
+    display: block;
+    opacity: 1;
+    -ms-transition: opacity 0.4s ease-in;
+    -moz-transition: opacity 0.4s ease-in;
+    -webkit-transition: opacity 0.4s ease-in;
+    -o-transition: opacity 0.4s ease-in;
+    transition: opacity 0.4s ease-in; }
+  .wrapper .interface.hidden {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0;
+    -ms-transition: opacity 0.4s ease-in;
+    -moz-transition: opacity 0.4s ease-in;
+    -webkit-transition: opacity 0.4s ease-in;
+    -o-transition: opacity 0.4s ease-in;
+    transition: opacity 0.4s ease-in; }
+  .wrapper #messages {
+    height: 120px;
+    top: 250px;
+    background-color: #67686a; }
+    .wrapper #messages #level_header {
+      width: 332px;
+      height: 70px;
+      position: relative;
+      top: 24px;
+      margin: auto;
+      display: block; }
+    .wrapper #messages #level_header.level_1 {
+      background: url("/assets/images/game/level01.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_2 {
+      background: url("/assets/images/game/level02.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_3 {
+      background: url("/assets/images/game/level03.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_4 {
+      background: url("/assets/images/game/level04.png") no-repeat 0 0 transparent; }
+    .wrapper #messages #level_header.level_5 {
+      background: url("/assets/images/game/level05.png") no-repeat 0 0 transparent; }
+  .wrapper #menu {
+    top: 250px;
+    background-color: #67686a;
+    height: 120px; }
+    .wrapper #menu #logo {
+      margin: inherit;
+      height: 69px;
+      width: 140px;
+      position: relative;
+      top: 16px;
+      background: url("/assets/images/game/logo-bgblack.png") no-repeat 0 0 transparent; }
+    .wrapper #menu #start_game {
+      margin: inherit;
+      height: 75px;
+      width: 140px;
+      text-indent: -9999px;
+      position: relative;
+      top: 27px;
+      display: block;
+      background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent; }
+  .wrapper #hud {
+    position: absolute;
+    height: 27px;
+    top: 581px; }
+    .wrapper #hud .gunheat_wrapper {
+      height: inherit;
+      float: right; }
+    .wrapper #hud .points_wrapper {
+      height: inherit;
+      float: right;
+      width: 100px; }
+      .wrapper #hud .points_wrapper #points {
+        color: white;
+        margin: 6px;
+        float: right; }
+    .wrapper #hud .health_wrapper {
+      height: inherit;
+      float: left; }
+      .wrapper #hud .health_wrapper #health {
+        background: url("/assets/images/game/life.png") no-repeat 0 0;
+        width: 97px;
+        height: 12px;
+        display: block;
+        margin: 8px; }
+      .wrapper #hud .health_wrapper #health.health_0 {
+        background-position: 0 0; }
+      .wrapper #hud .health_wrapper #health.health_1 {
+        background-position: 0 -12px; }
+      .wrapper #hud .health_wrapper #health.health_2 {
+        background-position: 0 -24px; }
+      .wrapper #hud .health_wrapper #health.health_3 {
+        background-position: 0 -36px; }
+      .wrapper #hud .health_wrapper #health.health_4 {
+        background-position: 0 -48px; }
+      .wrapper #hud .health_wrapper #health.health_5 {
+        background-position: 0 -60px; }
+      .wrapper #hud .health_wrapper #health.health_6 {
+        background-position: 0 -72px; }

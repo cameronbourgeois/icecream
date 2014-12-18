@@ -1,0 +1,152 @@
+$red: #f08774
+$yellow: #e0ca75
+$green: #add3c6
+$grey: #67686a
+$black: #404041
+
+@font-face
+	font-family: 'DamnNoisyKidsRegular'
+	src: url('/assets/fonts/dnk-webfont.eot')
+	src: url('/assets/fonts/dnk-webfont.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/dnk-webfont.woff') format('woff'), url('/assets/fonts/dnk-webfont.ttf') format('truetype'), url('/assets/fonts/dnk-webfont.svg#DamnNoisyKidsRegular') format('svg')
+	font-weight: normal
+	font-style: normal
+
+canvas
+	display: block
+	margin: 0 auto
+	width: 400px
+.preload_holder
+	visibility:hidden
+	display:none
+.message
+	display: block
+	position: absolute
+#status
+	left: 20px
+	top: 564px
+#gameover
+	display: none
+	left: 166px
+	top: 300px
+#preload_holder
+	left: 120px
+	top: 300px
+	
+body
+	font-family: 'DamnNoisyKidsRegular'
+	background-color: $grey
+
+progress
+	display: block
+	margin: auto
+	position: relative
+	top: 200px
+	width: 250px
+
+.wrapper
+	margin: 0 auto
+	width: 400px
+	
+	.interface
+		width: inherit
+		margin: 0 auto
+		position: absolute
+		display: block
+		opacity: 1
+		-ms-transition: opacity 0.4s ease-in
+		-moz-transition: opacity 0.4s ease-in
+		-webkit-transition: opacity 0.4s ease-in
+		-o-transition: opacity 0.4s ease-in
+		transition: opacity 0.4s ease-in
+		
+	.interface.hidden
+		pointer-events: none
+		cursor: default
+		opacity: 0
+		-ms-transition: opacity 0.4s ease-in
+		-moz-transition: opacity 0.4s ease-in
+		-webkit-transition: opacity 0.4s ease-in
+		-o-transition: opacity 0.4s ease-in
+		transition: opacity 0.4s ease-in
+		
+	#messages
+		height: 120px
+		top: 250px
+		background-color: $grey
+		#level_header
+			width: 332px
+			height: 70px
+			position: relative
+			top: 24px
+			margin: auto
+			display: block
+		#level_header.level_1
+			background: url("/assets/images/game/level01.png") no-repeat 0 0 transparent
+		#level_header.level_2
+			background: url("/assets/images/game/level02.png") no-repeat 0 0 transparent
+		#level_header.level_3
+			background: url("/assets/images/game/level03.png") no-repeat 0 0 transparent
+		#level_header.level_4
+			background: url("/assets/images/game/level04.png") no-repeat 0 0 transparent
+		#level_header.level_5
+			background: url("/assets/images/game/level05.png") no-repeat 0 0 transparent
+		
+	#menu
+		top: 250px
+		background-color: $grey
+		height: 120px
+		#logo
+			margin: inherit
+			height: 69px
+			width: 140px
+			position: relative
+			top: 16px
+			background: url("/assets/images/game/logo-bgblack.png") no-repeat 0 0 transparent
+		#start_game	
+			margin: inherit
+			height: 75px
+			width: 140px
+			text-indent: -9999px
+			position: relative
+			top: 27px
+			display: block
+			background: url("/assets/images/game/bt-start.png") no-repeat 0 0 transparent
+			
+	#hud
+		position: absolute
+		height: 27px
+		top: 581px
+		.gunheat_wrapper
+			height: inherit
+			float: right
+		.points_wrapper
+			height: inherit
+			float: right
+			width: 100px
+			#points
+				color: white
+				margin: 6px
+				float: right
+		.health_wrapper
+			height: inherit
+			float: left
+			#health
+				background: url("/assets/images/game/life.png") no-repeat 0 0
+				width: 97px
+				height: 12px
+				display: block
+				margin: 8px
+			#health.health_0
+				background-position: 0 0
+			#health.health_1
+				background-position: 0 -12px
+			#health.health_2
+				background-position: 0 -24px
+			#health.health_3
+				background-position: 0 -36px
+			#health.health_4
+				background-position: 0 -48px
+			#health.health_5
+				background-position: 0 -60px
+			#health.health_6
+				background-position: 0 -72px
